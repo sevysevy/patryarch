@@ -1,0 +1,632 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <title>Empbel List</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- start: META -->
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="Clip-One - Frontend | Build with Twitter Bootstrap 3 | Version: 2.0" name="description" />
+    <meta content="ClipTheme" name="author" />
+    <!-- end: META -->
+    <!-- start: MAIN CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/animate.css/animate.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'fonts/clip-font.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main-responsive.min.css' %}" />
+    <link type="text/css" rel="stylesheet" id="skin_color" href="{% static 'css/theme_blue.min.css' %}" />
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <!-- RS5.0 Main Stylesheet -->
+    <link href="{% static 'bower_components/flexslider/flexslider.css' %}" rel="stylesheet" />
+    <link href="{% static 'bower_components/jquery-colorbox/example2/colorbox.css' %}" rel="stylesheet" />
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+</head>
+<body>
+    <!-- start: HEADER -->
+    <header>
+          <!-- start: TOP BAR -->
+        <div class="clearfix " id="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- start: TOP BAR CALL US -->
+                        <div class="callus">
+                            Call Us: (641)-734-4763 - Mail:
+                            <a href="mailto:info@example.com">
+                        info@example.com
+                    </a>
+                        </div>
+                        <!-- end: TOP BAR CALL US -->
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- start: TOP BAR SOCIAL ICONS -->
+                        <div class="social-icons">
+                            <ul>
+                                <li class="social-twitter tooltips" data-original-title="Twitter" data-placement="bottom">
+                                    <a target="_blank" href="http://www.twitter.com">
+                                Twitter
+                            </a>
+                                </li>
+                                <li class="social-dribbble tooltips" data-original-title="Dribbble" data-placement="bottom">
+                                    <a target="_blank" href="http://dribbble.com">
+                                Dribbble
+                            </a>
+                                </li>
+                                <li class="social-facebook tooltips" data-original-title="Facebook" data-placement="bottom">
+                                    <a target="_blank" href="http://facebook.com">
+                                Facebook
+                            </a>
+                                </li>
+                                <li class="social-google tooltips" data-original-title="Google" data-placement="bottom">
+                                    <a target="_blank" href="http://google.com">
+                                Google+
+                            </a>
+                                </li>
+                                <li class="social-linkedin tooltips" data-original-title="LinkedIn" data-placement="bottom">
+                                    <a target="_blank" href="http://linkedin.com">
+                                LinkedIn
+                            </a>
+                                </li>
+                                <li class="social-youtube tooltips" data-original-title="YouTube" data-placement="bottom">
+                                    <a target="_blank" href="http://youtube.com/">
+                                YouTube
+                            </a>
+                                </li>
+                                <li class="social-rss tooltips" data-original-title="RSS" data-placement="bottom">
+                                    <a target="_blank" href="#">
+                                RSS
+                            </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end: TOP BAR SOCIAL ICONS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end: TOP BAR -->
+        <div role="navigation" class="navbar navbar-default navbar-fixed-top space-top">
+            <!-- start: TOP NAVIGATION CONTAINER -->
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- start: LOGO -->
+                    <a class="navbar-brand" href="index.html">
+                      Empubel<i class="clip-clip"></i>List</a>
+                </div>
+                <a href="#" class="btn btn-default"><i class="fa fa-user"></i> connexion</a>
+            </div>
+        </div>  
+    </header>
+     <!-- end: HEADER -->
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container">
+         <section class="wrapper wrapper-grey padding50">
+            <!-- start: WORKS CONTAINER -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="center">Take a look at some of our work</h2>
+                        <hr>
+                        <p class="center">
+                            Nulla consequat massa quis enim. <strong>Donec pede justo</strong> fringilla vel, aliquet nec, vulputate eget, arcu.
+                            <br> In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                        </p>
+                        <div class="grid-container animate-group" data-animation-interval="100">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="grid-item animate">
+                                    <a href="#">
+                                        <div class="grid-image">
+                                            <img src="{% static 'images/image01.jpg' %}" class="img-responsive" />
+                                            <span class="image-overlay"> <i class="fa fa-mail-forward circle-icon circle-main-color"></i> </span>
+                                        </div>
+                                        <div class="grid-content">
+                                            4 Columns Portfolio
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="grid-item animate">
+                                    <a href="#">
+                                        <div class="grid-image">
+                                            <img src="{% static 'images/image02.jpg' %}" class="img-responsive" />
+                                            <span class="image-overlay"> <i class="fa fa-mail-forward circle-icon circle-main-color"></i> </span>
+                                        </div>
+                                        <div class="grid-content">
+                                            3 Columns Portfolio
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="grid-item animate">
+                                    <a href="#">
+                                        <div class="grid-image">
+                                            <img src="{% static 'images/image03.jpg' %}" class="img-responsive" />
+                                            <span class="image-overlay"> <i class="fa fa-mail-forward circle-icon circle-main-color"></i> </span>
+                                        </div>
+                                        <div class="grid-content">
+                                            2 Columns Portfolio
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="grid-item animate">
+                                    <a href="#">
+                                        <div class="grid-image">
+                                            <img src="{% static 'images/image04.jpg' %}" class="img-responsive" />
+                                            <span class="image-overlay"> <i class="fa fa-mail-forward circle-icon circle-main-color"></i> </span>
+                                        </div>
+                                        <div class="grid-content">
+                                            Single Project
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="center">
+                            <a href="#">
+                                View the Full Portfolio here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end: WORKS CONTAINER -->
+        </section>
+        <section class="wrapper padding50">
+            <!-- start: ABOUT US CONTAINER -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 style="text-align: right;">About Us</h2>
+                        <hr class="fade-left">
+                        <p style="text-align: right;">
+                            Lorem ipsum dolor sit amet, consectetuer <strong>adipiscing elit</strong>. Aenean commodo ligula eget dolor. Aenean massa.
+                        </p>
+                        <p style="text-align: right;">
+                            Nulla consequat massa quis enim.
+                            <br> Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                            <br> In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                            <br> Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+                            <br> Aenean <strong style="text-align: right;">vulputate</strong> eleifend tellus.
+                        </p>
+                        <hr class="fade-left">
+                        <a href="#" class="btn btn-default pull-right"><i class="fa fa-info"></i> Learn more...</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="icon-list animate-group">
+                            <li>
+                                <div class="timeline animate" data-animation-options='{"animation":"scaleToBottom", "duration":"300"}'></div>
+                                <i class="clip-stack-empty circle-icon circle-teal animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'></i>
+                                <div class="icon-list-content">
+                                    <h4>HTML5 / CSS3 / JS</h4>
+                                    <p>
+                                        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline animate" data-animation-options='{"animation":"scaleToBottom", "duration":"300", "delay": "300"}'></div>
+                                <i class="clip-paperplane circle-icon circle-green animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'></i>
+                                <div class="icon-list-content">
+                                    <h4>Awesome Sliders</h4>
+                                    <p>
+                                        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline animate" data-animation-options='{"animation":"scaleToBottom", "duration":"300", "delay": "300"}'></div>
+                                <i class="clip-droplet circle-icon circle-bricky animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'></i>
+                                <div class="icon-list-content">
+                                    <h4>Clean Design</h4>
+                                    <p>
+                                        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: ABOUT US CONTAINER -->
+        </section>
+        <section class="wrapper wrapper-grey padding50">
+            <!-- start: PORTFOLIO CONTAINER -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="flexslider" data-plugin-options='{"controlNav":false,"sync": "#carousel"}'>
+                            <ul class="slides">
+                                <li>
+                                    <a class="group1" href="{% static 'images/image01.jpg' %}" title="Caption here">
+                                        <img src="{% static 'images/image01.jpg' %}" />
+                                        <span class="image-overlay"> <i class="clip-expand circle-icon circle-main-color"></i> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="group1" href="{% static 'images/image02.jpg' %}" title="Caption here">
+                                        <img src="{% static 'images/image02.jpg' %}" />
+                                        <span class="image-overlay"> <i class="clip-expand circle-icon circle-main-color"></i> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="group1" href="{% static 'images/image03.jpg' %}" title="Caption here">
+                                        <img src="{% static 'images/image03.jpg' %}" />
+                                        <span class="image-overlay"> <i class="clip-expand circle-icon circle-main-color"></i> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="group1" href="{% static 'images/image04.jpg' %}" title="Caption here">
+                                        <img src="{% static 'images/image04.jpg' %}" />
+                                        <span class="image-overlay"> <i class="clip-expand circle-icon circle-main-color"></i> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="group1" href="{% static 'images/image05.jpg' %}" title="Caption here">
+                                        <img src="{% static 'images/image05.jpg' %}" />
+                                        <span class="image-overlay"> <i class="clip-expand circle-icon circle-main-color"></i> </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="carousel" class="flexslider animate-group" data-plugin-options='{"itemWidth": 120, "itemMargin": 5}'>
+                            <ul class="slides">
+                                <li>
+                                    <img src="{% static 'images/image01.jpg' %}" class="animate" data-animation-options='{"animation":"fadeIn", "duration":"600"}' />
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/image02.jpg' %}" class="animate" data-animation-options='{"animation":"fadeIn", "duration":"600"}' />
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/image03.jpg' %}" class="animate" data-animation-options='{"animation":"fadeIn", "duration":"600"}' />
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/image04.jpg' %}" class="animate" data-animation-options='{"animation":"fadeIn", "duration":"600"}' />
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/image05.jpg' %}" class="animate" data-animation-options='{"animation":"fadeIn", "duration":"600"}' />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="section-content">
+                            <h2>Why Choose Us</h2>
+                            <hr class="fade-right">
+                            <p>
+                                Lid est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.
+                            </p>
+                            <p>
+                                Ut enim ad minim veniam, quis nostrud Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci amets uns.
+                            </p>
+                            <p>
+                                Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips ameet quasi architecto beatae vitae dicta sunt explicabo
+                            </p>
+                            <ul>
+                                <li>
+                                    Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+                                </li>
+                                <li>
+                                    Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                                </li>
+                                <li>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
+                                </li>
+                                <li>
+                                    Ut enim ad minim veniam, quis nostrud Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci amets uns.
+                                </li>
+                                <li>
+                                    Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips ameet quasi architecto beatae vitae dicta sunt explicabo.
+                                </li>
+                            </ul>
+                            <hr class="fade-right">
+                            <a href="#" class="btn btn-default"><i class="fa fa-info"></i> Learn more...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end: PORTFOLIO CONTAINER -->
+        </section>
+        <section class="wrapper padding50">
+            <!-- start: CLIENTS CONTAINER -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="center">Our Happy Clients</h2>
+                        <h4 class="center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</h4>
+                    </div>
+                    <div class="flexslider col-md-12 animate-group" data-plugin-options='{"directionNav":false, "animation":"slide", "slideshow": false}' data-animation-interval="100">
+                        <ul class="slides">
+                            <li>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-1.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-2.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-3.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-4.png" alt="">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive" src="assets/images/logo-4.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive" src="assets/images/logo-2.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-5.png" alt="">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <img class="img-responsive animate" data-animation-options='{"animation":"fadeIn", "duration":"300"}' src="assets/images/logo-6.png" alt="">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: CLIENTS CONTAINER -->
+        </section>
+        <section class="wrapper wrapper-grey">
+            <!-- start: GENERIC CONTENT CONTAINER -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="{% static 'images/iphoneIpad-495x400.png' %}" class="img-responsive animate-if-visible" data-animation-options='{"animation":"tada", "duration":"600"}'>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Ultra-Responsive Design</h2>
+                        <hr class="fade-right">
+                        <p>
+                            Lid est laborum dolo rumes fugats untras. Etha rums ser quidem rerum facilis dolores nemis onis fugats vitaes nemo minima rerums unsers sadips amets.
+                        </p>
+                        <p>
+                            Ut enim ad minim veniam, quis nostrud Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci amets uns.
+                        </p>
+                        <p>
+                            Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips ameet quasi architecto beatae vitae dicta sunt explicabo.
+                        </p>
+                        <hr class="fade-right">
+                        <a class="btn btn-default" href="#"><i class="fa fa-info"></i> Learn more...</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end: GENERIC CONTENT CONTAINER -->
+        </section>
+         <section class="wrapper" style="min-height:400px; background-image: url('{% static 'images/photodune-4043508-3d-modern-office-room-l.jpg' %})" data-stellar-background-ratio="0.8" data-stellar-vertical-offset="-750">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="center white"><a href="">WE WORK HARD FOR YOU</a></h2>
+                        <p class="center white">
+                            Try new wxperience with Clip-One
+                        </p>
+                    </div>
+                </div>
+                <div class="row animate-group">
+                    <div class="col-sm-4">
+                        <div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
+                            <i class="icon-box-icon fa fa-pencil"></i>
+                            <h3 class="icon-box-title">Design</h3>
+                            <div class="icon-box-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                                    <br>
+                                    <a href="#">
+                                        Learn more
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
+                            <i class="icon-box-icon fa fa-code"></i>
+                            <h3 class="icon-box-title">Develop</h3>
+                            <div class="icon-box-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                                    <br>
+                                    <a href="#">
+                                        Learn more
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="icon-box animate" data-animation-options='{"animation":"flipInY", "duration":"600"}'>
+                            <i class="icon-box-icon fa fa-bug"></i>
+                            <h3 class="icon-box-title">Support</h3>
+                            <div class="icon-box-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                                    <br>
+                                    <a href="#">
+                                        Learn more
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+     <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.
+                        </p>
+                        <form method="POST" action="#" id="newsletterForm">
+                            <div class="input-group">
+                                <input type="text" id="email" name="email" placeholder="Email Address" class="form-control">
+                                <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    Go!
+                                </button>
+                            </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Latest Tweet</h4>
+                    <div class="twitter" id="tweet">
+                        <i class="fa fa-twitter"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.
+                        <a href="#" class="time">
+                        12 Dec
+                    </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-details">
+                        <h4>Contact Us</h4>
+                        <ul class="contact">
+                            <li>
+                                <p>
+                                    <i class="fa fa-map-marker"></i><strong>Address:</strong> 1234 Street Name, City Name, United States
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <i class="fa fa-envelope"></i><strong>Email:</strong>
+                                    <a href="mailto:mail@example.com">
+                                    mail@example.com
+                                </a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <ul>
+                            <li class="social-twitter tooltips" data-original-title="Twitter" data-placement="bottom">
+                                <a target="_blank" href="http://www.twitter.com">
+                                Twitter
+                            </a>
+                            </li>
+                            <li class="social-facebook tooltips" data-original-title="Facebook" data-placement="bottom">
+                                <a target="_blank" href="http://facebook.com" data-original-title="Facebook">
+                                Facebook
+                            </a>
+                            </li>
+                            <li class="social-linkedin tooltips" data-original-title="LinkedIn" data-placement="bottom">
+                                <a target="_blank" href="http://linkedin.com" data-original-title="LinkedIn">
+                                LinkedIn
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <a class="logo" href="index.html">
+                        CLIP<i class="clip-clip"></i>ONE
+                    </a>
+                    </div>
+                    <div class="col-md-7">
+                        <p>
+                            &copy; Copyright
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> by Clip-One. All Rights Reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <nav id="sub-menu">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                    FAQ's
+                                </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    Sitemap
+                                </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    Contact
+                                </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a id="scroll-top" href="#"><i class="fa fa-angle-up"></i></a>
+    <!-- end: FOOTER -->
+
+    <!-- start: MAIN JAVASCRIPTS -->
+    <!--[if lt IE 9]>
+        <script src="../../bower_components/respond/dest/respond.min.js"></script>
+        <script src="../../bower_components/html5shiv/dist/html5shiv.min.js"></script>
+        <script src="../../bower_components/jquery-1.x/dist/jquery.min.js"></script>
+        <![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!--<![endif]-->
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/blockUI/jquery.blockUI.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery.transit/jquery.transit.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery_appear/jquery.appear.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery.cookie/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/min/main.min.js' %}"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <!-- RS5.0 Core JS Files -->
+    <script src="{% static 'bower_components/jquery.stellar/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery-colorbox/jquery.colorbox-min.js' %}"></script>
+    <script src="{% static 'js/min/index.min.js' %}"></script>
+    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script>
+        $(document).ready(function() {
+            Main.init();
+            Index.init();
+            $.stellar();
+        });
+    </script>
+</body>
+
+</html>

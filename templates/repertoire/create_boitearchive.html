@@ -1,0 +1,13 @@
+{% extends "repertoire/base.html" %}
+
+{% block content %}
+ <!-- start: PAGE CONTENT -->
+                <div class="row">
+                 	<form method="post">{% csrf_token %}
+                		{{form.as_p}}
+                		<button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
+            		</form>
+                </div>
+                <!-- end: PAGE CONTENT-->
+                	
+{% endblock %}

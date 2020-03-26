@@ -1,0 +1,237 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <!-- build:process -->
+    <title><%= title %></title>
+    <link rel="shortcut icon" href="<%= pathFavicon %>" />
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Raleway:400,100,200,300,500,600,700,800,900/" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'fonts/clip-font.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/iCheck/skins/all.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/sweetalert/dist/sweetalert.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main-responsive.min.css' %}" />
+    <link type="text/css" rel="stylesheet" media="print" href="{% static 'css/print.min.css' %}" />
+    <link type="text/css" rel="stylesheet" id="skin_color" href="{% static 'css/theme/light.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap-treeview.min.css' %}" />
+ 
+    
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <link href="{% static 'bower_components/fullcalendar/dist/fullcalendar.min.css' %}" rel="stylesheet" />
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+</head>
+<body>
+
+    <!-- start: HEADER -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- start: TOP NAVIGATION CONTAINER -->
+        <div class="container">
+            <div class="navbar-header">
+                <!-- start: RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="clip-list-2"></span>
+                </button>
+                <!-- end: RESPONSIVE MENU TOGGLER -->
+                <!-- start: LOGO -->
+                <a class="navbar-brand" href="index.html">
+                    CLIP<i class="clip-clip"></i>ONE
+                </a>
+                <!-- end: LOGO -->
+            </div>
+            <div class="navbar-tools">
+                <!-- start: TOP NAVIGATION MENU -->
+                <ul class="nav navbar-right">
+                    <!-- start: USER DROPDOWN -->
+                    <li class="dropdown current-user">
+                        <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+                            <img src="{% static 'images/avatar-1-small.jpg' %}" class="circle-img" alt="">
+                            <span class="username">Peter Clark</span>
+                            <i class="clip-chevron-down"></i>
+                        </a>
+                    </li>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="pages_user_profile.html">
+                                    <i class="clip-user-2"></i>
+                                    &nbsp;My Profile
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="utility_lock_screen.html">
+                                    <i class="clip-locked"></i>
+                                    &nbsp;Lock Screen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="login_example1.html">
+                                    <i class="clip-exit"></i>
+                                    &nbsp;Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+                <!-- end: USER DROPDOWN -->
+        </div>
+    </div>
+
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container">
+        <div class="navbar-content">
+            <!-- start: SIDEBAR -->
+            <div class="main-navigation navbar-collapse collapse">
+                <!-- start: MAIN MENU TOGGLER BUTTON -->
+                <div class="navigation-toggler">
+                    <i class="clip-chevron-left"></i>
+                    <i class="clip-chevron-right"></i>
+                </div>
+                <!-- end: MAIN MENU TOGGLER BUTTON -->
+                <!-- start: MAIN NAVIGATION MENU -->
+                <ul class="main-navigation-menu">
+                    <li> <!--active open-->
+                        <a href="{% url 'repertoire_dashboard' repertoire.repertoire_id %}">
+                            <i class="clip-home-3"></i>
+                            <span class="title"> Dashboard </span><span class="selected"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{%url 'repertoire_archives' repertoire.repertoire_id%}" >
+                            <i class="clip-cursor"></i>
+                            <span class="title"> Repertoire </span><span class="selected"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="clip-user-2"></i>
+                            <span class="title">Login</span><i class="icon-arrow"></i>
+                            <span class="selected"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="login_example1.html">
+                                    <span class="title">Login Form Example 1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="login_example2.html">
+                                    <span class="title">Login Form Example 2</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> 
+                </ul>
+                <!-- end: MAIN NAVIGATION MENU -->
+            </div>
+            <!-- end: SIDEBAR -->
+        </div>           
+
+
+
+        <!-- start: PAGE -->
+        <div class="main-content">
+            <!-- build:section layout.panelConfiguration --><!-- /build -->
+            <div class="container">
+                <!-- start: PAGE HEADER -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- build:section layout.styleSelector --><!-- /build -->
+                        <!-- start: PAGE TITLE & BREADCRUMB -->
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="clip-home-3"></i>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="active">
+                                Dashboard
+                            </li>
+                            <li class="search-box">
+                                <form class="sidebar-search">
+                                    <div class="form-group">
+                                        <input type="text" id ="input-search" placeholder="Start Searching...">
+                                        <button class="submit">
+                                            <i class="clip-search-3"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ol>
+                        <div class="page-header">
+                            {% block page-header %}
+                            
+                            {% endblock %}
+                        </div>
+                        <!-- end: PAGE TITLE & BREADCRUMB -->
+                    </div>
+                </div>
+                <!-- end: PAGE HEADER -->
+
+                {% block content %}
+                {% endblock %}
+               
+            </div>
+        </div>
+        <!-- end: PAGE -->
+    </div>
+    <!-- end: MAIN CONTAINER -->
+    <!-- start: FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-inner">
+            <script>document.write(new Date().getFullYear())</script> &copy; clip-one by cliptheme.
+        </div>
+        <div class="footer-items">
+            <span class="go-top"><i class="clip-chevron-up"></i></span>
+        </div>
+    </div>
+    <!-- end: FOOTER -->
+    <!-- start: MAIN JAVASCRIPTS -->
+    <!--[if lt IE 9]>
+        <script src="../../bower_components/respond/dest/respond.min.js"></script>
+        <script src="../../bower_components/Flot/excanvas.min.js"></script>
+        <script src="../../bower_components/jquery-1.x/dist/jquery.min.js"></script>
+        <![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!--<![endif]-->
+
+    <script type="text/javascript" src="{% static 'js/repertoire_element.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/treeview.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/min/bootstrap-treeview.min.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/blockUI/jquery.blockUI.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/iCheck/icheck.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery.cookie/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/min/main.min.js' %}"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="{% static 'bower_components/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'bower_components/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'bower_components/Flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'plugin/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'bower_components/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'bower_components/fullcalendar/dist/fullcalendar.min.js' %}"></script>    
+    <script src="{% static 'js/min/index.min.js' %}"></script>
+    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+
+</body>
+</html>

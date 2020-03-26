@@ -1,0 +1,66 @@
+{% extends "repertoire/base.html" %}
+{% load static %}
+
+{% block linkrepertoire %} {% url 'repertoire_archives' repertoire.repertoire_id %} {% endblock %}
+
+{% block page-header %} <h1>REPERTOIRE <small>{{repertoire.nom}} </small></h1> {% endblock %}
+
+{% block content %}
+
+
+
+<div class = "row"><a class='btn btn-success serie-form'  href="#">Ajouter serie</a>
+<a class='btn btn-success sousserie-form'  href="#">Ajouter sous-serie</a>
+<a class='btn btn-success division-form'  href="#">Ajouter division</a>
+<a class='btn btn-success archives-form'  href="#">Ajouter archives</a>
+<a class='btn btn-success'  href="{% url 'create_boitearchive' repertoire.repertoire_id %}">Ajouter boite d'archives</a>
+</div>
+
+<div class="modal fade" id ="modal-serie">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-sousserie">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-division">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-archives">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-btarchive">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+<hr>
+<div class="row">
+
+	<div id="repertoire" class="col-sm-6"> 
+	</div>
+
+	<div class="col-sm-6">
+    	<div id="recher">
+        	<div class="panel panel-default">
+        		<div class="panel-heading">
+          		</div>
+          		<div id="search-output" class="panel-body"> </div>
+        	</div>
+    	</div>
+	</div>
+</div>
+
+
+{% endblock %}
