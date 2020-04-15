@@ -15,17 +15,20 @@ class repertoireform(forms.ModelForm):
 
 class serieform(forms.ModelForm):
 
+
     class Meta:
         model = Serie
         fields = [
-            'repertoire',
             'cote',
             'nom',
-            
         ]
 
 
 class sousserieform(forms.ModelForm):
+
+    def __init__ (self , repertoire_id, *args , **kwargs ):
+        super ( sousserieform, self ).__init__(*args,**kwargs)
+        self.fields['serie'].queryset = Serie.objects.filter(repertoireID = repertoire_id)
 
     class Meta:
         model = SousSerie
@@ -37,6 +40,10 @@ class sousserieform(forms.ModelForm):
 
 class divisionform(forms.ModelForm):
 
+    def __init__ (self , repertoire_id, *args , **kwargs ):
+        super ( divisionform, self ).__init__(*args,**kwargs)
+        self.fields['sousserie'].queryset = SousSerie.objects.filter(repertoireID = repertoire_id)
+
     class Meta:
         model = Division
         fields = [
@@ -46,6 +53,9 @@ class divisionform(forms.ModelForm):
         ]
 
 class archivesform(forms.ModelForm):
+    def __init__ (self , repertoire_id, *args , **kwargs ):
+        super ( archivesform, self ).__init__(*args,**kwargs)
+        self.fields['division'].queryset = Division.objects.filter(repertoireID = repertoire_id)
 
     class Meta:
         model = Archives

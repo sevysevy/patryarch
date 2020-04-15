@@ -31,10 +31,13 @@ pre_save.connect(repertoire_pre_save_receiver, sender=Repertoire)
 
 class Serie(models.Model):
     repertoire = models.ForeignKey(Repertoire, on_delete=models.CASCADE)
+
     cote       = models.CharField(max_length=1) # une lettre de l'alphabet
     nom        = models.CharField(max_length=200)
+    
     tag        = models.CharField(max_length=10,default="serie")            #Utiliser par treeviewJS pour l'affichage du repertoire
-    #creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    repertoireID      = models.CharField(max_length=20,default='')
+    #creer_par  = c*z""""""""""""             kmodels.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
 
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
@@ -44,10 +47,13 @@ class Serie(models.Model):
 
 class SousSerie(models.Model):
     serie     = models.ForeignKey(Serie, on_delete=models.CASCADE)
+
     cote      = models.CharField(max_length=10 , unique =True) # de la forme A-2
     numero    = models.PositiveIntegerField(default=0)
     nom       = models.CharField(max_length=200)
+
     tag       = models.CharField(max_length=10,default="sousserie") #Utiliser par treeviewJS pour l'affichage du repertoire
+    repertoireID    = models.CharField(max_length=20,default='')
     #creer_par = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
 
     def __str__(self):
@@ -69,16 +75,20 @@ def sous_serie_pre_save_receiver(sender, instance, *args, **kwargs):#on determin
             instance.numero = num
 
 
+
 pre_save.connect(sous_serie_pre_save_receiver, sender=SousSerie)
 
 
 class Division(models.Model):
     sousserie  = models.ForeignKey(SousSerie, on_delete=models.CASCADE)
+
     cote       = models.CharField(max_length=20, unique =True)
     numero     = models.PositiveIntegerField(default=0)
     nom        = models.CharField(max_length=200)
     nombre_arc = models.PositiveIntegerField(default=0)
+
     tag        = models.CharField(max_length=10,default="division")
+    repertoireID    = models.CharField(max_length=20,default='')
     #creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
 
 
@@ -117,7 +127,9 @@ class Archives(models.Model):
     dateExtrem_min   = models.DateField()
     dateExtrem_max   = models.DateField()
     dua              = models.DateField()
+
     tag              = models.CharField(max_length=10,default="archive")
+    repertoireID    = models.CharField(max_length=20,default='')
     #creer_par        = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
 
     def __str__(self):

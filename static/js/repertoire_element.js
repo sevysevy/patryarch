@@ -28,8 +28,8 @@ $(document).ready(function(){
 				}
 
 		});
+		return false;
 		
-
 	});
 
 
@@ -56,19 +56,15 @@ $(document).ready(function(){
 			type: form.attr('method'),
 			dataType:'json',
 			success: function(data){
-				if(data.form.is_valid){
-				console.alert('Serie enregistré');
-				$('#modal-sousserie').modal('hide');
 				
-				}
-				else{
-					$('#modal-sousserie .modal-content').html(data.html_form)
-				}
+					console.alert('Serie enregistré');
+					$('#modal-sousserie').modal('hide');
+				
 			}
 
 		})
+		return false;
 		
-
 	});
 
 
@@ -97,33 +93,28 @@ $(document).ready(function(){
 			type: form.attr('method'),
 			dataType:'json',
 			success: function(data){
-				if(data.form.is_valid){
 				console.alert('Serie enregistré');
 				$('#modal-division').modal('hide');
-				}
-				else{
-					$('#modal-division .modal-content').html(data.html_form)
-				}
+				
 			}
 
 		})
-		
-
+		return false;
 	});
 
 
 
 	$('.archives-form').on('click' , function(){
 		$.ajax({
-		url:'/repertoire/create/archives',
-		type:'get',
-		datatype:'json',
-		beforeSend: function(){
-			$('#modal-archives').modal('show');
-		},
-		success: function(data){
-			$('#modal-archives .modal-content').html(data.html_form);
-		}
+			url:'/repertoire/create/archives',
+			type:'get',
+			dataType:'json',
+			beforeSend: function(){
+				$('#modal-archives').modal('show');
+			},
+			success: function(data){
+				$('#modal-archives .modal-content').html(data.html_form);
+			}
 		});
 	});
 
@@ -135,18 +126,13 @@ $(document).ready(function(){
 			type: form.attr('method'),
 			dataType:'json',
 			success: function(data){
-				if(data.form.is_valid){
-				console.alert('Serie enregistré');
+				console.alert('archive enregistré');
 				$('#modal-archives').modal('hide');
-				}
-				else{
-					$('#modal-archives .modal-content').html(data.html_form)
-				}
+
 			}
 
 		})
-		
-
+		return false;
 	});
 
 

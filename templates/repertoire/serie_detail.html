@@ -1,0 +1,86 @@
+<h3>DETAIL DE LA SERIE</h3> <a href="#" class="btn btn-success update_serie"><i class="fa fa-info"></i> Ajouter une sous-serie</a>
+<hr>
+
+<div class="cote">{{serie.cote}}</div>
+<h5>NOM : {{serie.nom}}</h5>
+
+<a href="#" class="btn btn-primary update_serie"><i class="fa fa-info"></i> MODIFIER</a>
+<a href="#" class="btn btn-danger delete_serie"><i class="fa fa-info"></i> SUPPRIMER</a>
+
+<script type="text/javascript">
+
+            $('.update_serie').on('click' , function(){
+              var el = $('#modal-detailserie .cote')
+              var cote= $(el).text()
+              $.ajax({
+                  url:'/repertoire/serie/'+ cote + '/update',
+                  type:'get',
+                  datatype:'json',
+                  beforeSend: function(){
+                    $('#modal-detailserie').modal('hide');
+                    $('#modal-serie-update').modal('show');
+                     },
+                  success: function(data){
+                     $('#modal-serie-update .modal-content').html(data.html);
+                     }
+              });
+            });
+
+            $('#modal-serie-update').on('submit', '.form-update-serie', function(){
+              var form = $(this);
+              $.ajax({
+                url : form.attr('data-url'),
+                data: form.serialize(),
+                type: form.attr('method'),
+                dataType:'json',
+                success: function(data){
+
+                  $('#modal-serie-update').modal('hide');
+
+                }
+
+              })
+              return false;
+
+            });
+
+
+            $('.delete_serie').on('click' , function(){
+              var el = $('#modal-detailserie .cote')
+              var cote = $(el).text()
+              $.ajax({
+                  url:'/repertoire/serie/'+ cote +'/delete',
+                  type:'get',
+                  datatype:'json',
+                  beforeSend: function(){
+                     $('#modal-detailserie').modal('hide');
+                     $('#modal-delete-serie').modal('show');
+                     },
+                  success: function(data){
+                     $('#modal-delete-serie .modal-content').html(data.html);
+                     }
+              });
+            });
+
+            $('#modal-delete-serie').on('submit', '.form-delete-serie', function(){
+              var form = $(this);
+              $.ajax({
+                url : form.attr('data-url'),
+                data: form.serialize(),
+                type: form.attr('method'),
+                dataType:'json',
+                success: function(data){
+
+                  $('#modal-delete-serie').modal('hide');
+
+                }
+
+              })
+              return false;
+
+            });
+
+
+          </script>
+
+        
