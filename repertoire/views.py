@@ -13,7 +13,7 @@ def create_repertoire(request):
         form = repertoireform(request.POST)
         if form.is_valid():
             repertoire = form.save()
-            return HttpResponseRedirect(reverse('repertoire_dashboard', kwargs={'id':repertoire.id}))
+            return HttpResponseRedirect(reverse('repertoire_dashboard', kwargs={'rpertoire_id':repertoire_id}))
         else:
             form = repertoireform()
             return render(request , 'repertoire/create_repertoire.html',{'form':form})
