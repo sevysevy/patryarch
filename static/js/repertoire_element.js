@@ -24,7 +24,7 @@ $(document).ready(function(){
 			success: function(data){
 				
 					$('#modal-serie').modal('hide');
-					console.alert('Serie enregistré');
+					
 				}
 
 		});
@@ -55,10 +55,8 @@ $(document).ready(function(){
 			data: form.serialize(),
 			type: form.attr('method'),
 			dataType:'json',
-			success: function(data){
-				
-					console.alert('Serie enregistré');
-					$('#modal-sousserie').modal('hide');
+			success: function(data){	
+				$('#modal-sousserie').modal('hide');
 				
 			}
 
@@ -93,7 +91,6 @@ $(document).ready(function(){
 			type: form.attr('method'),
 			dataType:'json',
 			success: function(data){
-				console.alert('Serie enregistré');
 				$('#modal-division').modal('hide');
 				
 			}
@@ -126,7 +123,6 @@ $(document).ready(function(){
 			type: form.attr('method'),
 			dataType:'json',
 			success: function(data){
-				console.alert('archive enregistré');
 				$('#modal-archives').modal('hide');
 
 			}
@@ -159,7 +155,7 @@ $(document).ready(function(){
 			dataType:'json',
 			success: function(data){
 				if(data.form.is_valid){
-				console.alert('Serie enregistré');
+				
 				}
 				else{
 					$('#modal-btarchive .modal-content').html(data.html_form)

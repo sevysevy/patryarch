@@ -24,8 +24,11 @@ def create_repertoire(request):
 
 def dashboard_repertoire(request, repertoire_id):
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
+    archives_num = Archives.objects.filter(repertoireID = repertoire_id).count()
+    
+
     request.session["repertoire_id"] = repertoire.repertoire_id
-    return render(request,'repertoire/dashboard_repertoire.html',{'repertoire':repertoire})
+    return render(request,'repertoire/dashboard_repertoire.html',{'repertoire':repertoire , 'archive':archives_num})
 
 def repertoire(request, repertoire_id):
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
@@ -104,10 +107,18 @@ def create_serie(request):
     if request.method == 'POST':
         form = serieform(request.POST)
         if form.is_valid():
-            form.instance.repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
-            form.instance.repertoireID = repertoire_id
-            serie = form.save()
-            data['form_is_valid'] = True
+            cote = form.cleaned_data['cote']
+            if Serie.objects.filter(repertoireID=repertoire_id).filter(cote=cote).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/create_serie.html',context,request=request)
+                return JsonResponse(data)
+            else:
+                form.instance.repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
+                form.instance.repertoireID = repertoire_id
+                serie = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -124,7 +135,7 @@ def create_serie(request):
 def detail_serie(request,cote):
     repertoire_id = request.session.get('repertoire_id')
     data = dict()
-    serie = Repertoire.objects.get(repertoire_id=repertoire_id).serie_set.get(cote=cote)
+    serie = Serie.objects.get(cote=cote,repertoireID=repertoire_id)
     context = {
     'serie':serie
     
@@ -193,6 +204,30 @@ def create_sousserie(request):
     data['html_form'] = render_to_string('repertoire/create_sousserie.html',context,request=request)
     return JsonResponse(data)
 
+def add_sousserie_to(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    serie = Serie.objects.filter(repertoireID=repertoire_id).get(cote=cote)
+    data = dict()
+    if request.method == 'POST':
+        form = m_sousserieform(request.POST)
+        if form.is_valid():
+            form.instance.repertoireID = repertoire_id
+            form.instance.serie = serie
+            sousserie = form.save()
+            data['form_is_valid'] = True
+            
+        else:
+            data['form_is_valid'] = False
+            
+    else:
+        form = m_sousserieform()
+    context = {
+    'form' : form,
+    'cote' :cote
+    }
+    data['html_form'] = render_to_string('repertoire/create_sousserie.html',context,request=request)
+    return JsonResponse(data)
+
 
 def detail_sousserie(request,cote):
     repertoire_id = request.session.get('repertoire_id')
@@ -206,11 +241,68 @@ def detail_sousserie(request,cote):
     return JsonResponse(data)
 
 
-def update_sousserie():
-    pass
+def update_sousserie(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    sserie = SousSerie.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method =='POST':
+        form = sousserieform(repertoire_id, request.POST, instance=sserie)
+        if form.is_valid():
+            serie = form.save()
+        else:
+            form = sousserieform(repertoire_id, instance=sserie)  
+    else:
+        form = sousserieform(repertoire_id, instance=sserie)
+    context = {
+    'sserie':sserie,
+    'form':form
+    }
+    data['html'] = render_to_string('repertoire/sserie_update.html', context,request = request)
+    return JsonResponse(data)
 
-def delete_sousserie():
-    pass
+    
+
+def delete_sousserie(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    sserie = SousSerie.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method == 'POST':
+        
+        sserie.delete()
+
+    context = {
+    'sserie':sserie
+    }
+    data['html'] = render_to_string('repertoire/sousserie_delete.html',context,request=request)
+    return JsonResponse(data)
+
+
+def add_division_to(request, cote):
+    repertoire_id = request.session.get('repertoire_id')
+    sserie = SousSerie.objects.get(cote=cote,repertoireID=repertoire_id)
+    data = dict()
+    if request.method == 'POST':
+        form = m_divisionform(request.POST)
+        if form.is_valid():
+            form.instance.repertoireID = repertoire_id
+            form.instance.sousserie = sserie
+            division = form.save()
+            data['form_is_valid'] = True
+            
+        else:
+            data['form_is_valid'] = False
+            
+    else:
+        form = m_divisionform()
+    context = {
+    'form' : form,
+    'cote' :cote
+    }
+    data['html_form'] = render_to_string('repertoire/create_division.html',context,request=request)
+    return JsonResponse(data)
+
+
+
 
 
 
@@ -297,6 +389,7 @@ def delete_archives():
 
 
 def create_boitearchive(request, repertoire_id):
+    repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     if request.method == 'POST':
         form = boitearchiveform(request.POST)
         if form.is_valid():
@@ -305,10 +398,10 @@ def create_boitearchive(request, repertoire_id):
             return HttpResponseRedirect(reverse('repertoire_archives', kwargs={'repertoire_id':repertoire_id}))
         else:
             form = boitearchiveform()
-            return render(request , 'repertoire/create_boitearchive.html', {'form':form})
+            return render(request , 'repertoire/create_boitearchive.html', {'form':form,'repertoire':repertoire})
     else:
         form = boitearchiveform()
-        return render(request , 'repertoire/create_boitearchive.html', {'form':form})
+        return render(request , 'repertoire/create_boitearchive.html', {'form':form,'repertoire':repertoire})
 
 def update_boitearchive():
     pass

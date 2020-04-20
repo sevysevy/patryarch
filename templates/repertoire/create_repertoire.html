@@ -1,7 +1,92 @@
-{% extends "repertoire/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <!-- build:process -->
+    <title>Creation du Repertoire</title>
+    <link rel="shortcut icon" href="<%= pathFavicon %>" />
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Raleway:400,100,200,300,500,600,700,800,900/" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'fonts/clip-font.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/iCheck/skins/all.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'bower_components/sweetalert/dist/sweetalert.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/main-responsive.min.css' %}" />
+    <link type="text/css" rel="stylesheet" media="print" href="{% static 'css/print.min.css' %}" />
+    <link type="text/css" rel="stylesheet" id="skin_color" href="{% static 'css/theme/light.min.css' %}" />
+    <link href="{% static 'bower_components/jquery.dynatree/dist/skin-vista/ui.dynatree.css' %}" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap-treeview.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'css/custum.css' %}" />
+ 
+    
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <link href="{% static 'bower_components/fullcalendar/dist/fullcalendar.min.css' %}" rel="stylesheet" />
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+</head>
+<body>
 
-{% block content %}
- <!-- start: PAGE CONTENT -->
+    <!-- start: HEADER -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- start: TOP NAVIGATION CONTAINER -->
+        <div class="container">
+            <div class="navbar-header">
+                <!-- start: RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="clip-list-2"></span>
+                </button>
+                <!-- end: RESPONSIVE MENU TOGGLER -->
+                <!-- start: LOGO -->
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    CLIP<i class="clip-clip"></i>ONE
+                </a>
+                <!-- end: LOGO -->
+            </div>
+            <div class="navbar-tools">
+                <!-- start: TOP NAVIGATION MENU -->
+                <ul class="nav navbar-right">
+                    <!-- start: USER DROPDOWN -->
+                    <li class="dropdown current-user">
+                        <h3>CREATION DU REPERTOIRE</h3>
+                    </li>
+                        
+                </ul>
+            </div>
+                <!-- end: USER DROPDOWN -->
+        </div>
+    </div>
+
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container">
+          
+        <!-- start: PAGE -->
+        <div class="main-content">
+            <!-- build:section layout.panelConfiguration --><!-- /build -->
+            <div class="container">
+                <!-- start: PAGE HEADER -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- build:section layout.styleSelector --><!-- /build -->
+                        <!-- start: PAGE TITLE & BREADCRUMB -->
+                        <ol class="breadcrumb">
+                           
+                        </ol>
+                        <div class="page-header">
+                        	<h3> Veillez creer votre repertoire et commencer à utiliser patryarch </h3>
+
+                        </div>
+                        <!-- end: PAGE TITLE & BREADCRUMB -->
+                    </div>
+                </div>
+                <!-- end: PAGE HEADER -->
+
+                 <!-- start: PAGE CONTENT -->
                 <div class="row">
                  	<form method="post">{% csrf_token %}
                 		{{form.as_p}}
@@ -9,5 +94,67 @@
             		</form>
                 </div>
                 <!-- end: PAGE CONTENT-->
-                	
-{% endblock %}
+               
+            </div>
+        </div>
+        <!-- end: PAGE -->
+    </div>
+    <!-- end: MAIN CONTAINER -->
+    <!-- start: FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-inner">
+            <script>document.write(new Date().getFullYear())</script> &copy; clip-one by cliptheme.
+        </div>
+        <div class="footer-items">
+            <span class="go-top"><i class="clip-chevron-up"></i></span>
+        </div>
+    </div>
+    <!-- end: FOOTER -->
+    <!-- start: MAIN JAVASCRIPTS -->
+    <!--[if lt IE 9]>
+        <script src="../../bower_components/respond/dest/respond.min.js"></script>
+        <script src="../../bower_components/Flot/excanvas.min.js"></script>
+        <script src="../../bower_components/jquery-1.x/dist/jquery.min.js"></script>
+        <![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <!--<![endif]-->
+
+    <script type="text/javascript" src="{% static 'js/repertoire_element.js' %}"></script>
+    
+    <script type="text/javascript" src="{% static 'js/treeview.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/min/bootstrap-treeview.min.js' %}"></script>
+
+
+    <script type="text/javascript" src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/blockUI/jquery.blockUI.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/iCheck/icheck.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/jquery.cookie/jquery.cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/sweetalert/dist/sweetalert.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/min/main.min.js' %}"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="{% static 'bower_components/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'bower_components/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'bower_components/Flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'plugin/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'bower_components/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'bower_components/fullcalendar/dist/fullcalendar.min.js' %}"></script>    
+    <script src="{% static 'js/min/index.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery.dynatree/dist/jquery.dynatree.min.js' %}"></script>
+    <script src="{% static 'js/min/ui-treeview.min.js' %}"></script>
+    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+    <script>
+        jQuery(document).ready(function() {
+            
+            UITreeview.init();
+        });
+    </script>
+</body>
+</html>

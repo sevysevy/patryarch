@@ -1,6 +1,6 @@
-{% if cote %}<form method="post" data-url="{% url 'add_division' cote %}" class="create-division">{%else%}<form method="post" data-url="{% url 'create_division' %}" class="create-division">{% endif %} {% csrf_token %}
+<form method="post" data-url="{% url 'update_sserie' sserie.cote %}" class="form-update-sserie">{% csrf_token %}
     <div class ="modal-header">
-    		<h5 class="modal-tital">Creation de division</h5>
+    		<h5 class="modal-tital">Modifier la sous serie</h5>
     		<button type="button" class="close" data-dismiss="modal" aria-label="close">
     			<span aria-hidden="true">&times;</span>
     		</button>
@@ -12,6 +12,3 @@
         	<button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
         </div>
 </form>
-
-
-                	

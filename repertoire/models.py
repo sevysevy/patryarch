@@ -15,6 +15,7 @@ from patryarch.utils import unique_repertoire_id_generator
 class Repertoire(models.Model):
     repertoire_id      = models.CharField(max_length=20 , unique=True)
     nom                = models.CharField (max_length = 200)
+    description        = models.TextField(default='')
     #admin             = models.ManyToManyField(User)
     #Proprietaire      = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
 
@@ -48,7 +49,7 @@ class Serie(models.Model):
 class SousSerie(models.Model):
     serie     = models.ForeignKey(Serie, on_delete=models.CASCADE)
 
-    cote      = models.CharField(max_length=10 , unique =True) # de la forme A-2
+    cote      = models.CharField(max_length=10 ) # de la forme A-2
     numero    = models.PositiveIntegerField(default=0)
     nom       = models.CharField(max_length=200)
 
@@ -82,7 +83,7 @@ pre_save.connect(sous_serie_pre_save_receiver, sender=SousSerie)
 class Division(models.Model):
     sousserie  = models.ForeignKey(SousSerie, on_delete=models.CASCADE)
 
-    cote       = models.CharField(max_length=20, unique =True)
+    cote       = models.CharField(max_length=20)
     numero     = models.PositiveIntegerField(default=0)
     nom        = models.CharField(max_length=200)
     nombre_arc = models.PositiveIntegerField(default=0)
@@ -117,7 +118,7 @@ class Archives(models.Model):
     division         = models.ForeignKey('Division', on_delete=models.CASCADE)
     boite            = models.ForeignKey('Boite_archive', on_delete=models.CASCADE)
 
-    cote             = models.CharField(max_length=30 , unique=True)
+    cote             = models.CharField(max_length=30 )
     numero           = models.PositiveIntegerField(default=0)
     nom              = models.CharField(max_length=200)
     description      = models.TextField(null=True)

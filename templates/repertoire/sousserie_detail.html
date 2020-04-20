@@ -1,8 +1,121 @@
 <h3>DETAIL DE LA SOUS-SERIE</h3>
 <hr>
 
-<h5>COTE : {{sousserie.cote}}</h5>
+COTE : <em class = "cote">{{sousserie.cote}}</em>
 <h5>NOM : {{sousserie.nom}}</h5>
 
-<a href="#" class="btn btn-primary"><i class="fa fa-info"></i> MODIFIER</a>
-<a href="#" class="btn btn-danger"><i class="fa fa-info"></i> SUPPRIMER</a>
+<a href="#" class="btn btn-primary update_sserie"><i class="fa fa-info"></i> MODIFIER</a>
+<a href="#" class="btn btn-danger delete_sserie"><i class="fa fa-info"></i> SUPPRIMER</a>
+<a href="#" class="btn btn-success add_division"><i class="fa fa-info"></i> Ajouter une division</a>
+
+
+
+<script type="text/javascript">
+
+            $('.update_sserie').on('click' , function(){
+              var el = $('#modal-detailsserie .cote')
+              var cote= $(el).text()
+              $.ajax({
+                  url:'/repertoire/sousserie/'+ cote + '/update',
+                  type:'get',
+                  datatype:'json',
+                  beforeSend: function(){
+                    $('#modal-detailsserie').modal('hide');
+                    $('#modal-sserie-update').modal('show');
+                     },
+                  success: function(data){
+                     $('#modal-sserie-update .modal-content').html(data.html);
+                     }
+              });
+            });
+
+            $('#modal-sserie-update').on('submit', '.form-update-sserie', function(){
+              var form = $(this);
+              $.ajax({
+                url : form.attr('data-url'),
+                data: form.serialize(),
+                type: form.attr('method'),
+                dataType:'json',
+                success: function(data){
+
+                  $('#modal-sserie-update').modal('hide');
+
+                }
+
+              });
+              return false;
+
+            });
+
+
+  $('.add_division').on('click' , function(){
+    var el = $('#modal-detailsserie .cote')
+    var cote= $(el).text()
+    $.ajax({
+    url:'/repertoire/sousserie/'+cote+'/add/division',
+    type:'get',
+    datatype:'json',
+    beforeSend: function(){
+      $('#modal-detailsserie').modal('hide');
+      $('#modal-division').modal('show');
+    },
+    success: function(data){
+      $('#modal-division .modal-content').html(data.html_form);
+    }
+    });
+  });
+
+  $('#modal-division').on('submit', '.create-division', function(){
+    var form = $(this);
+    $.ajax({
+      url : form.attr('data-url'),
+      data: form.serialize(),
+      type: form.attr('method'),
+      dataType:'json',
+      success: function(data){
+        $('#modal-division').modal('hide');
+        
+      }
+
+    });
+    return false;
+    
+  });
+
+
+            $('.delete_sserie').on('click' , function(){
+              var el = $('#modal-detailsserie .cote')
+              var cote = $(el).text()
+              $.ajax({
+                  url:'/repertoire/sousserie/'+ cote +'/delete',
+                  type:'get',
+                  datatype:'json',
+                  beforeSend: function(){
+                     $('#modal-detailsserie').modal('hide');
+                     $('#modal-delete-sserie').modal('show');
+                     },
+                  success: function(data){
+                     $('#modal-delete-sserie .modal-content').html(data.html);
+                     }
+              });
+            });
+
+        $('#modal-delete-sserie').on('submit', '.form-delete-sserie', function(){
+            var form = $(this);
+            $.ajax({
+                url : form.attr('data-url'),
+                data: form.serialize(),
+                type: form.attr('method'),
+                dataType:'json',
+                success: function(data){
+                	$('#modal-delete-sserie').modal('hide');
+                } 
+            });
+            return false;
+        });
+             
+
+
+
+          </script>
+

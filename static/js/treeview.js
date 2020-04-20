@@ -18,7 +18,7 @@ $(document).ready( function() {
 
                   if(cote.length==1){
                     $.ajax({
-                      url:'/repertoire/detail/serie/' + cote,
+                      url:'/repertoire/serie/' + cote + '/detail',
                       type:'get',
                       datatype:'json',
                       beforeSend: function(){
@@ -31,7 +31,7 @@ $(document).ready( function() {
                   }
                   if(cote.length==3){
                     $.ajax({
-                      url:'/repertoire/detail/sousserie/' + cote,
+                      url:'/repertoire/sousserie/' + cote + '/detail',
                       type:'get',
                       datatype:'json',
                       beforeSend: function(){
@@ -44,7 +44,7 @@ $(document).ready( function() {
                   }    
                   if(cote.length==7){
                     $.ajax({
-                      url:'/repertoire/detail/division/' + cote,
+                      url:'/repertoire/division/' + cote + '/detail',
                       type:'get',
                       datatype:'json',
                       beforeSend: function(){
@@ -57,7 +57,7 @@ $(document).ready( function() {
                   }   
                   if(cote.length==11){
                     $.ajax({
-                      url:'/repertoire/detail/archive/' + cote,
+                      url:'/repertoire/archive/' + cote + '/detail',
                       type:'get',
                       datatype:'json',
                       beforeSend: function(){

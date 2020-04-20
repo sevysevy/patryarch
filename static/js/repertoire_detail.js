@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var cote = info.substr(0,index_endcote)
 
 		$.ajax({
-			url:'/repertoire/detail/serie/' + cote,
+			url:'/repertoire/serie/' + cote + '/detail/',
 			type:'get',
 			datatype:'json',
 			beforeSend: function(){

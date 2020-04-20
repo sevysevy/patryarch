@@ -9,6 +9,7 @@ class repertoireform(forms.ModelForm):
         model = Repertoire
         fields = [
             'nom',
+            'description',
             
         ]
 
@@ -38,6 +39,15 @@ class sousserieform(forms.ModelForm):
             
         ]
 
+class m_sousserieform(forms.ModelForm):
+
+    class Meta:
+        model = SousSerie
+        fields = [
+            'nom',
+            
+        ]
+
 class divisionform(forms.ModelForm):
 
     def __init__ (self , repertoire_id, *args , **kwargs ):
@@ -51,6 +61,16 @@ class divisionform(forms.ModelForm):
             'nom',
             
         ]
+
+class m_divisionform(forms.ModelForm):
+
+    class Meta:
+        model = Division
+        fields = [
+            'nom',
+            
+        ]
+
 
 class archivesform(forms.ModelForm):
     def __init__ (self , repertoire_id, *args , **kwargs ):

@@ -107,7 +107,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href=" " >
+                        <a href=" {% url 'repertoire_archives' repertoire.repertoire_id %} " >
                             <i class="clip-cursor"></i>
                             <span class="title"> Repertoire </span><span class="selected"></span>
                         </a>
@@ -225,6 +225,5 @@
             
             UITreeview.init();
         });
-    </script>
-</body>
+    </script> 
 </html>
