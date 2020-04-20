@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+from django.contrib.staticfiles import storage
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,10 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-class DjsManifestStaticFilesStorage(ManifestStaticFilesStorage):
+class DjsManifestStaticFilesStorage(storage.ManifestStaticFilesStorage):
     manifest_strict = False
 
-    
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedDjsManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
