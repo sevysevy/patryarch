@@ -124,7 +124,7 @@ class DjsManifestStaticFilesStorage(storage.ManifestStaticFilesStorage):
     manifest_strict = False
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedDjsManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
