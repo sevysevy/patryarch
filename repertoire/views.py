@@ -338,11 +338,67 @@ def detail_division(request,cote):
     data['html'] = render_to_string('repertoire/division_detail.html', context,request = request)
     return JsonResponse(data)
 
-def update_division():
-    pass
 
-def delete_division():
-    pass
+def update_division(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    division = Division.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method =='POST':
+        form = divisionform(repertoire_id, request.POST, instance=division)
+        if form.is_valid():
+            division = form.save()
+        else:
+            form = divisionform(repertoire_id, instance=division)  
+    else:
+        form = divisionform(repertoire_id, instance=division)
+    context = {
+    'division':division,
+    'form':form
+    }
+    data['html'] = render_to_string('repertoire/division_update.html', context,request = request)
+    return JsonResponse(data)
+
+
+
+def delete_division(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    division = Division.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method == 'POST':
+        
+        division.delete()
+
+    context = {
+    'division':division
+    }
+    data['html'] = render_to_string('repertoire/division_delete.html',context,request=request)
+    return JsonResponse(data)
+
+
+def add_archive_to(request, cote):
+    repertoire_id = request.session.get('repertoire_id')
+    division = Division.objects.get(cote=cote,repertoireID=repertoire_id)
+    data = dict()
+    if request.method == 'POST':
+        form = m_archiveform(request.POST)
+        if form.is_valid():
+            form.instance.repertoireID = repertoire_id
+            form.instance.division = division
+            archive = form.save()
+            data['form_is_valid'] = True
+            
+        else:
+            data['form_is_valid'] = False
+            
+    else:
+        form = m_archiveform()
+    context = {
+    'form' : form,
+    'cote' :cote
+    }
+    data['html_form'] = render_to_string('repertoire/create_archives.html',context,request=request)
+    return JsonResponse(data)
+
 
 
 
@@ -380,8 +436,25 @@ def detail_archive(request,cote):
     data['html'] = render_to_string('repertoire/archive_detail.html', context,request = request)
     return JsonResponse(data)
 
-def update_archives():
-    pass
+def update_archive(request, cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    archive = Archives.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method =='POST':
+        form = archivesform(repertoire_id, request.POST, instance=archive)
+        if form.is_valid():
+            archive = form.save()
+        else:
+            form = archivesform(repertoire_id, instance=archive)  
+    else:
+        form = archivesform(repertoire_id, instance=archive)
+    context = {
+    'archive':archive,
+    'form':form
+    }
+    data['html'] = render_to_string('repertoire/archive_update.html', context,request = request)
+    return JsonResponse(data)
+
 
 def delete_archives():
     pass

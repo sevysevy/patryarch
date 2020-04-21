@@ -1,7 +1,8 @@
 <h3>DETAIL DE L'ARCHIVE</h3>
 <hr>
 
-<h5>COTE : {{archive.cote}}</h5>
+COTE : <h5 class="cote">{{archive.cote}}</h5>
+<h5>NOM : {{archive.nom}}</h5>
 <h5>BOITE : {{archive.boite}}</h5>
 <h5>DESCRIPTION : {{archive.description}}</h5>
 <h5>NOMBRE DE SOUS DOSSIERS : {{archive.nbrSousDoc}}</h5>
@@ -9,6 +10,111 @@
 <h5>STATUT : {{archive.present}}</h5>
 <h5>DATE EXTREME MIN : {{archive.dateExtrem_min}}</h5>
 <h5>DATE EXTREME MAX: {{archive.dateExtrem_max}}</h5>
-
-<a href="#" class="btn btn-primary"><i class="fa fa-info"></i> MODIFIER</a>
+<div class="modal-footer">
+<a href="#" class="btn btn-primary update_archive"><i class="fa fa-info"></i> MODIFIER</a>
 <a href="#" class="btn btn-danger"><i class="fa fa-info"></i> SUPPRIMER</a>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $('.update_archive').on('click' , function(){
+        var el = $('#modal-detailarchive .cote')
+        var cote= $(el).text()
+        $.ajax({
+            url:'/repertoire/archive/'+ cote + '/update',
+            type:'get',
+            datatype:'json',
+            beforeSend: function(){
+                $('#modal-detailarchive').modal('hide');
+                $('#modal-archives-update').modal('show');
+            },
+            success: function(data){
+                $('#modal-archives-update .modal-content').html(data.html);
+            }
+        });
+    });
+
+    $('#modal-archives-update').on('submit', '.form-update-archive', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType:'json',
+            success: function(data){
+
+                $('#modal-archives-update').modal('hide');
+            }
+
+        });
+           return false;
+    });
+
+
+   $('.add_archive').on('click' , function(){
+	  var el = $('#modal-detaildivision .cote')
+      var cote= $(el).text()
+      $.ajax({
+         url:'/repertoire/division/'+cote+'/add/archive',
+         type:'get',
+         datatype:'json',
+         beforeSend: function(){
+             $('#modal-detaildivision').modal('hide');
+             $('#modal-archives').modal('show');
+         },
+         success: function(data){
+             $('#modal-archives .modal-content').html(data.html_form);
+         }
+      });
+    });
+
+    $('#modal-archives').on('submit', '.create-archive', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+      		data: form.serialize(),
+      		type: form.attr('method'),
+      		dataType:'json',
+      		success: function(data){
+        		$('#modal-archives').modal('hide');
+      		}
+    	});
+    	return false;
+  	});
+
+
+    $('.delete_division').on('click' , function(){
+        var el = $('#modal-detaildivision .cote')
+        var cote = $(el).text()
+        $.ajax({
+            url:'/repertoire/division/'+ cote +'/delete',
+            type:'get',
+            datatype:'json',
+            beforeSend: function(){
+   		        $('#modal-detaildivision').modal('hide');
+                $('#modal-delete-division').modal('show');
+            },
+            success: function(data){
+                $('#modal-delete-division .modal-content').html(data.html);
+            }
+        });
+    });
+
+    $('#modal-delete-division').on('submit', '.form-delete-division', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType:'json',
+            success: function(data){
+               	$('#modal-delete-division').modal('hide');
+            } 
+        });
+            return false;
+    });
+          
+</script>

@@ -91,6 +91,21 @@ class archivesform(forms.ModelForm):
                 
         ]
 
+class m_archiveform(forms.ModelForm):
+
+    class Meta:
+        model = Archives
+        fields = [
+            'boite',
+            'nom',
+            'nbrSousDoc',
+            'description',
+            'dateExtrem_min',
+            'dateExtrem_max',
+            'dua',
+            
+        ]
+
 class boitearchiveform(forms.ModelForm):
 
     class Meta:

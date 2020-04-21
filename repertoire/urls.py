@@ -25,10 +25,14 @@ urlpatterns = [
     path('create/division', views.create_division, name='create_division'),
     path('sousserie/<cote>/add/division', views.add_division_to, name='add_division'),
     path('division/<cote>/detail', views.detail_division, name='detail_division'),
+    path('division/<cote>/update', views.update_division, name='update_division'),
+    path('division/<cote>/delete', views.delete_division, name='delete_division'),
 
 
     path('create/archives', views.create_archives, name='create_archives'),
-    path('detail/archive/<cote>', views.detail_archive, name='detail_archive'),
+    path('archive/<cote>/detail', views.detail_archive, name='detail_archive'),
+    path('division/<cote>/add/archive', views.add_archive_to, name='add_archive'),
+    path('archive/<cote>/update', views.update_archive, name='update_archive'),
     
     path('<repertoire_id>/create/boitearchives', views.create_boitearchive, name='create_boitearchive'),
     #path('')

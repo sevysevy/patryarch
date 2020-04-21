@@ -1,0 +1,12 @@
+<form method="post" data-url="{% url 'update_archive' archive.cote %}" class="form-update-archive">{% csrf_token %}
+    <div class ="modal-header">
+            <button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
+    		<h5 class="modal-tital">Modifier l'archive </h5>
+    		<button type="button" class="close" data-dismiss="modal" aria-label="close">
+    			<span aria-hidden="true">&times;</span>
+    		</button>
+    	</div>
+    	<div class="modal-body">
+        	{{form.as_p}}
+        </div>
+</form>

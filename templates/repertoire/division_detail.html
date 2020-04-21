@@ -1,8 +1,112 @@
-<h3>DETAIL DE LA division</h3>
+<h3>DETAIL DE LA division</h3><a href="#" class="btn btn-success add_archive"><i class="fa fa-info"></i> Ajouter une archive</a>
 <hr>
 
-<h5>COTE : {{division.cote}}</h5>
+COTE : <em class = "cote">{{division.cote}}</em>
 <h5>NOM : {{division.nom}}</h5>
 
-<a href="#" class="btn btn-primary"><i class="fa fa-info"></i> MODIFIER</a>
-<a href="#" class="btn btn-danger"><i class="fa fa-info"></i> SUPPRIMER</a>
+<div class="modal-footer">
+<a href="#" class="btn btn-primary update_division"><i class="fa fa-info"></i> MODIFIER</a>
+<a href="#" class="btn btn-danger delete_division"><i class="fa fa-info"></i> SUPPRIMER</a>
+</div>
+
+
+<script type="text/javascript">
+
+    $('.update_division').on('click' , function(){
+        var el = $('#modal-detaildivision .cote')
+        var cote= $(el).text()
+        $.ajax({
+            url:'/repertoire/division/'+ cote + '/update',
+            type:'get',
+            datatype:'json',
+            beforeSend: function(){
+                $('#modal-detaildivision').modal('hide');
+                $('#modal-division-update').modal('show');
+            },
+            success: function(data){
+                $('#modal-division-update .modal-content').html(data.html);
+            }
+        });
+    });
+
+    $('#modal-division-update').on('submit', '.form-update-division', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType:'json',
+            success: function(data){
+
+                $('#modal-division-update').modal('hide');
+            }
+
+        });
+           return false;
+    });
+
+
+   $('.add_archive').on('click' , function(){
+	  var el = $('#modal-detaildivision .cote')
+      var cote= $(el).text()
+      $.ajax({
+         url:'/repertoire/division/'+cote+'/add/archive',
+         type:'get',
+         datatype:'json',
+         beforeSend: function(){
+             $('#modal-detaildivision').modal('hide');
+             $('#modal-archives').modal('show');
+         },
+         success: function(data){
+             $('#modal-archives .modal-content').html(data.html_form);
+         }
+      });
+    });
+
+    $('#modal-archives').on('submit', '.create-archive', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+      		data: form.serialize(),
+      		type: form.attr('method'),
+      		dataType:'json',
+      		success: function(data){
+        		$('#modal-archives').modal('hide');
+      		}
+    	});
+    	return false;
+  	});
+
+
+    $('.delete_division').on('click' , function(){
+        var el = $('#modal-detaildivision .cote')
+        var cote = $(el).text()
+        $.ajax({
+            url:'/repertoire/division/'+ cote +'/delete',
+            type:'get',
+            datatype:'json',
+            beforeSend: function(){
+   		        $('#modal-detaildivision').modal('hide');
+                $('#modal-delete-division').modal('show');
+            },
+            success: function(data){
+                $('#modal-delete-division .modal-content').html(data.html);
+            }
+        });
+    });
+
+    $('#modal-delete-division').on('submit', '.form-delete-division', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType:'json',
+            success: function(data){
+               	$('#modal-delete-division').modal('hide');
+            } 
+        });
+            return false;
+    });
+          
+</script>

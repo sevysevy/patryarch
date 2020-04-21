@@ -1,6 +1,6 @@
-<form method="post" class="form-delete-serie" data-url="{% url 'delete_serie' serie.cote %}">{% csrf_token %}
+<form method="post" class="form-delete-division" data-url="{% url 'delete_division' division.cote %}">{% csrf_token %}
     <div class ="modal-header">
-         <legend>Voulez vous vraiment supprimer {{serie.nom}}<br></legend>
+         <legend>Voulez vous vraiment supprimer {{division.nom}}<br></legend>
         <button type="button" class="close" data-dismiss="modal" aria-label="close">
             Annuler<span aria-hidden="true">&times;</span>
         </button>

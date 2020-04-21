@@ -20,6 +20,9 @@
     <li>
     	<a class='btn btn-default  active'  href="{% url 'create_boitearchive' repertoire.repertoire_id %}">Ajouter boite d'archives</a>
     </li>
+    <li>
+    	<a class='btn btn-primary  active' id="bt-refresh">REFRESH</a>
+    </li>
     <li class="search-box">
         <form class="sidebar-search">
             <div class="form-group">
@@ -53,11 +56,8 @@
 	</div>
 </div>
 
-<div class="row">	
-	<div id="tree13" class= "col-sm-6"></div>
-</div>
 
-<!-- modal create serie sserie division archive -->
+<!--------------------------------- modal create serie sserie division archive --------------------------------------->
 <div class="modal fade" id ="modal-serie">
 	<div class="modal-dialog">
 		<div class="modal-content"></div>
@@ -89,7 +89,7 @@
 </div>
 
 
-<!-- modal detail serie sserie division archive -->
+<!-------------------------------- modal detail serie sserie division archive ------------------------------------>
 <div class="modal fade" id ="modal-detailserie">
 	<div class="modal-dialog">
 		<div class="modal-content"></div>
@@ -114,7 +114,7 @@
 	</div>
 </div>
 
-<!-- modal update data ---->
+<!-------------------------------------------------- modal update data ----------------------------------------->
 
 <div class="modal fade" id ="modal-serie-update">
 	<div class="modal-dialog">
@@ -128,9 +128,20 @@
 	</div>
 </div>
 
+<div class="modal fade" id ="modal-division-update">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-archives-update">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
 
 
-<!-- modal delete data ---->
+<!---------------------------------------------------- modal delete data --------------------------------------->
 
 <div class="modal fade" id ="modal-delete-serie">
 	<div class="modal-dialog">
@@ -139,6 +150,12 @@
 </div>
 
 <div class="modal fade" id ="modal-delete-sserie">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<div class="modal fade" id ="modal-delete-division">
 	<div class="modal-dialog">
 		<div class="modal-content"></div>
 	</div>

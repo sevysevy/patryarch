@@ -115,7 +115,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#modal-archives').on('submit', '.create-archives', function(){
+	$('#modal-archives').on('submit', '.create-archive', function(){
 		var form = $(this);
 		$.ajax({
 			url : form.attr('data-url'),
