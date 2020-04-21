@@ -82,16 +82,16 @@ $(document).ready( function() {
            $.each(results, function (index, result) {
             
             if(result.tag=='archive'){
-              output += '<a href =" archive/' + result.id +'/detail/">- ' + result.text + '</a>' + '<br>';
+              output +=  result.text + '<br>';
             }
             else if(result.tag=='division'){
-              output += '<a href ="division/' + result.id +'/detail/">- ' + result.text + '</a>' + '<br>';
+              output += result.text +  '<br>';
             }
             else if(result.tag=='sousserie'){
-              output += '<a href ="sousserie/' + result.id +'/detail/">- ' + result.text + '</a>' + '<br>';
+              output +=  result.text +  '<br>';
             }
             else if(result.tag=='serie'){
-              output += '<a href ="serie/' + result.id +'/detail/">- ' + result.text + '</a>' + '<br>';
+              output += result.text +  '<br>';
             }
          });
           $('#search-output').html(output);
