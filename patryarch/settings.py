@@ -120,11 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-class DjsManifestStaticFilesStorage(storage.ManifestStaticFilesStorage):
-    manifest_strict = False
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATICFILES_STORAGE = 'patryarch.storage.WhiteNoiseStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
