@@ -34,7 +34,7 @@ urlpatterns = [
     path('division/<cote>/add/archive', views.add_archive_to, name='add_archive'),
     path('archive/<cote>/update', views.update_archive, name='update_archive'),
     
-    path('<repertoire_id>/create/boitearchives', views.create_boitearchive, name='create_boitearchive'),
+    path('create/boitearchives', views.create_boitearchive, name='create_boitearchive'),
     #path('')
 
 ]

@@ -112,6 +112,5 @@ class boitearchiveform(forms.ModelForm):
         model = Boite_archive
         fields = [
             'numero',
-            'emplacement',
-            
+            'emplacement',  
         ]

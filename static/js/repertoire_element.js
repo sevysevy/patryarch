@@ -132,39 +132,32 @@ $(document).ready(function(){
 	});
 
 
-	$('.btarchive-form').on('click' , function(){
-		$.ajax({
-		url:'/repertoire/create/boitearchives',
-		type:'get',
-		datatype:'json',
-		beforeSend: function(){
-			$('#modal-btarchive').modal('show');
-		},
-		success: function(data){
-			$('#modal-btarchive .modal-content').html(data.html_form);
-		}
-		});
-	});
+    $('.btarchives-form').on('click' , function(){
+      $.ajax({
+         url:'/repertoire/create/boitearchives',
+         type:'get',
+         datatype:'json',
+         beforeSend: function(){
+                $('#modal-boitearchives').modal('show');
+            },
+         success: function(data){
+             $('#modal-boitearchives .modal-content').html(data.html);
+         }
+      });
+    });
 
-	$('#modal-btarchive').on('submit', '.create-btarchive', function(){
-		var form = $(this);
-		$.ajax({
-			url : form.attr('data-url'),
-			data: form.serialize(),
-			type: form.attr('method'),
-			dataType:'json',
-			success: function(data){
-				if(data.form.is_valid){
-				
-				}
-				else{
-					$('#modal-btarchive .modal-content').html(data.html_form)
-				}
-			}
-
-		})
-		return false;
-
-	});
+    $('#modal-boitearchives').on('submit', '.create-boitearchives', function(){
+        var form = $(this);
+        $.ajax({
+            url : form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType:'json',
+            success: function(data){
+                $('#modal-boitearchives').modal('hide');
+            }
+        })
+        return false;
+    });
 
 });

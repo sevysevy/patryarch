@@ -1,12 +1,20 @@
-<h3>DETAIL DE LA division</h3><a href="#" class="btn btn-success add_archive"><i class="fa fa-info"></i> Ajouter une archive</a>
-<hr>
+<div class ="modal-header">
+  <h5 class="modal-title">DETAIL DE LA DIVISION</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-COTE : <em class = "cote">{{division.cote}}</em>
-<h5>NOM : {{division.nom}}</h5>
+<div class="modal-body">
+  COTE : <strong class = "cote">{{division.cote}}</strong>
+  <h5>NOM : {{division.nom}}</h5>
+</div>
+
 
 <div class="modal-footer">
 <a href="#" class="btn btn-primary update_division"><i class="fa fa-info"></i> MODIFIER</a>
 <a href="#" class="btn btn-danger delete_division"><i class="fa fa-info"></i> SUPPRIMER</a>
+<a href="#" class="btn btn-success add_archive"><i class="fa fa-info"></i> Ajouter une archive</a>
 </div>
 
 
@@ -63,7 +71,7 @@ COTE : <em class = "cote">{{division.cote}}</em>
       });
     });
 
-    $('#modal-archives').on('submit', '.create-archive', function(){
+    $('#modal-archives').on('submit', '.add-archive', function(){
         var form = $(this);
         $.ajax({
             url : form.attr('data-url'),

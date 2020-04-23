@@ -1,12 +1,19 @@
-<h3>DETAIL DE LA SERIE</h3> <a href="#" class="btn btn-success add_sserie"><i class="fa fa-info"></i> Ajouter une sous-serie</a>
-<hr>
+<div class ="modal-header">
+  <h5 class="modal-title">DETAIL DE LA SERIE</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-COTE: <em class="cote">{{serie.cote}}</em>
-<h5>NOM : {{serie.nom}}</h5>
+<div class="modal-body">
+  COTE: <strong class="cote">{{serie.cote}}</strong>
+  <h5>NOM : {{serie.nom}}</h5>
+</div>
 
 <div class="modal-footer">
 <a href="#" class="btn btn-primary update_serie"><i class="fa fa-info"></i> MODIFIER</a>
 <a href="#" class="btn btn-danger delete_serie"><i class="fa fa-info"></i> SUPPRIMER</a>
+<a href="#" class="btn btn-success add_sserie"><i class="fa fa-info"></i> Ajouter une sous-serie</a>
 </div>
 
 <script type="text/javascript">
@@ -64,7 +71,7 @@ COTE: <em class="cote">{{serie.cote}}</em>
     });
   });
 
-  $('#modal-sousserie').on('submit', '.create-sousserie', function(){
+  $('#modal-sousserie').on('submit', '.add-sousserie', function(){
     var form = $(this);
     $.ajax({
       url : form.attr('data-url'),

@@ -1,8 +1,15 @@
-<h3>DETAIL DE LA SOUS-SERIE</h3>
-<hr>
+<div class ="modal-header">
+  <h5 class="modal-title">DETAIL DE LA SOUS-SERIE</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-COTE : <em class = "cote">{{sousserie.cote}}</em>
-<h5>NOM : {{sousserie.nom}}</h5>
+<div class="modal-body">
+  COTE : <strong class = "cote">{{sousserie.cote}}</strong>
+  <h5>NOM : {{sousserie.nom}}</h5>
+</div>
+
 
 <div class="modal-footer">
 <a href="#" class="btn btn-primary update_sserie"><i class="fa fa-info"></i> MODIFIER</a>
@@ -53,20 +60,20 @@ COTE : <em class = "cote">{{sousserie.cote}}</em>
     var el = $('#modal-detailsserie .cote')
     var cote= $(el).text()
     $.ajax({
-    url:'/repertoire/sousserie/'+cote+'/add/division',
-    type:'get',
-    datatype:'json',
-    beforeSend: function(){
-      $('#modal-detailsserie').modal('hide');
-      $('#modal-division').modal('show');
-    },
-    success: function(data){
-      $('#modal-division .modal-content').html(data.html_form);
-    }
+      url:'/repertoire/sousserie/'+cote+'/add/division',
+      type:'get',
+      datatype:'json',
+      beforeSend: function(){
+        $('#modal-detailsserie').modal('hide');
+        $('#modal-division').modal('show');
+      },
+      success: function(data){
+        $('#modal-division .modal-content').html(data.html_form);
+      }
     });
   });
 
-  $('#modal-division').on('submit', '.create-division', function(){
+  $('#modal-division').on('submit', '.add-division', function(){
     var form = $(this);
     $.ajax({
       url : form.attr('data-url'),

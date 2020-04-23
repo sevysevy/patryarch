@@ -225,7 +225,7 @@ def add_sousserie_to(request,cote):
     'form' : form,
     'cote' :cote
     }
-    data['html_form'] = render_to_string('repertoire/create_sousserie.html',context,request=request)
+    data['html_form'] = render_to_string('repertoire/add_sousserie.html',context,request=request)
     return JsonResponse(data)
 
 
@@ -246,13 +246,13 @@ def update_sousserie(request,cote):
     data = dict()
     sserie = SousSerie.objects.get(cote=cote,repertoireID=repertoire_id)
     if request.method =='POST':
-        form = sousserieform(repertoire_id, request.POST, instance=sserie)
+        form = m_sousserieform(request.POST, instance=sserie)
         if form.is_valid():
             serie = form.save()
         else:
-            form = sousserieform(repertoire_id, instance=sserie)  
+            form = m_sousserieform( instance=sserie)  
     else:
-        form = sousserieform(repertoire_id, instance=sserie)
+        form = m_sousserieform( instance=sserie)
     context = {
     'sserie':sserie,
     'form':form
@@ -298,11 +298,8 @@ def add_division_to(request, cote):
     'form' : form,
     'cote' :cote
     }
-    data['html_form'] = render_to_string('repertoire/create_division.html',context,request=request)
+    data['html_form'] = render_to_string('repertoire/add_division.html',context,request=request)
     return JsonResponse(data)
-
-
-
 
 
 
@@ -344,13 +341,13 @@ def update_division(request,cote):
     data = dict()
     division = Division.objects.get(cote=cote,repertoireID=repertoire_id)
     if request.method =='POST':
-        form = divisionform(repertoire_id, request.POST, instance=division)
+        form = m_divisionform(request.POST, instance=division)
         if form.is_valid():
             division = form.save()
         else:
-            form = divisionform(repertoire_id, instance=division)  
+            form = m_divisionform( instance=division)  
     else:
-        form = divisionform(repertoire_id, instance=division)
+        form = m_divisionform(instance=division)
     context = {
     'division':division,
     'form':form
@@ -396,7 +393,7 @@ def add_archive_to(request, cote):
     'form' : form,
     'cote' :cote
     }
-    data['html_form'] = render_to_string('repertoire/create_archives.html',context,request=request)
+    data['html_form'] = render_to_string('repertoire/add_archives.html',context,request=request)
     return JsonResponse(data)
 
 
@@ -441,13 +438,13 @@ def update_archive(request, cote):
     data = dict()
     archive = Archives.objects.get(cote=cote,repertoireID=repertoire_id)
     if request.method =='POST':
-        form = archivesform(repertoire_id, request.POST, instance=archive)
+        form = m_archiveform(request.POST, instance=archive)
         if form.is_valid():
             archive = form.save()
         else:
-            form = archivesform(repertoire_id, instance=archive)  
+            form = m_archiveform(instance=archive)  
     else:
-        form = archivesform(repertoire_id, instance=archive)
+        form = m_archiveform(instance=archive)
     context = {
     'archive':archive,
     'form':form
@@ -461,20 +458,29 @@ def delete_archives():
 
 
 
-def create_boitearchive(request, repertoire_id):
-    repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
+
+def create_boitearchive(request):
+    repertoire_id = request.session.get('repertoire_id')
+
+    data = dict()
     if request.method == 'POST':
         form = boitearchiveform(request.POST)
         if form.is_valid():
             form.instance.repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
-            boitearchive = form.save()
-            return HttpResponseRedirect(reverse('repertoire_archives', kwargs={'repertoire_id':repertoire_id}))
+            boite = form.save()
+            data['form_is_valid'] = True
+
         else:
-            form = boitearchiveform()
-            return render(request , 'repertoire/create_boitearchive.html', {'form':form,'repertoire':repertoire})
+            data['form_is_valid'] = False
+            
     else:
         form = boitearchiveform()
-        return render(request , 'repertoire/create_boitearchive.html', {'form':form,'repertoire':repertoire})
+    context = {
+    'form' : form
+    }
+    data['html'] = render_to_string('repertoire/create_boitearchive.html',context,request=request)
+    return JsonResponse(data)
+
 
 def update_boitearchive():
     pass

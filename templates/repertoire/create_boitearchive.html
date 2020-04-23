@@ -1,13 +1,15 @@
-{% extends "repertoire/base.html" %}
-
-{% block content %}
- <!-- start: PAGE CONTENT -->
-                <div class="row">
-                 	<form method="post">{% csrf_token %}
-                		{{form.as_p}}
-                		<button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
-            		</form>
-                </div>
-                <!-- end: PAGE CONTENT-->
-                	
-{% endblock %}
+<form method="post" data-url="{% url 'create_boitearchive' %}" class="create-boitearchives">{% csrf_token %}
+    <div class ="modal-header">
+            <h5 class="modal-title">Creation de la boite d'archive</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{form.as_p}}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
+        </div>
+</form>
+               

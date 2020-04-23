@@ -26,7 +26,7 @@ $(document).ready( function() {
         }
       });
     }
-    if(cote.length==3){
+    if(cote.length ==3 || cote.length ==4 ) {
       $.ajax({
         url:'/repertoire/sousserie/' + cote + '/detail',
         type:'get',
@@ -39,7 +39,7 @@ $(document).ready( function() {
         }
       });
     }    
-    if(cote.length==7){
+    if(cote.length==7 || cote.length==8){
       $.ajax({
         url:'/repertoire/division/' + cote + '/detail',
         type:'get',
@@ -52,7 +52,7 @@ $(document).ready( function() {
         }
       });
     }   
-    if(cote.length==11){
+    if(cote.length==11 || cote.length==12){
       $.ajax({
         url:'/repertoire/archive/' + cote + '/detail',
         type:'get',
@@ -78,7 +78,7 @@ $(document).ready( function() {
            
 
            var results = $tree.treeview('search', [ pattern, options ]);
-           var output = '<p>' + results.length + ' resultats trouvés</p>';
+           var output = '<p>' + results.length + ' resultats trouvés</p><hr>';
            $.each(results, function (index, result) {
             
             if(result.tag=='archive'){
@@ -91,7 +91,7 @@ $(document).ready( function() {
               output +=  result.text +  '<br>';
             }
             else if(result.tag=='serie'){
-              output += result.text +  '<br>';
+              output += result.text + '<br>';
             }
          });
           $('#search-output').html(output);
@@ -131,7 +131,7 @@ $(document).ready( function() {
               }
             });
           }
-          if(cote.length==3){
+          if(cote.length ==3 || cote.length ==4 ){
             $.ajax({
               url:'/repertoire/sousserie/' + cote + '/detail',
               type:'get',
@@ -144,7 +144,7 @@ $(document).ready( function() {
               }
             });
           }    
-          if(cote.length==7){
+          if(cote.length==7 || cote.length==8){
             $.ajax({
               url:'/repertoire/division/' + cote + '/detail',
               type:'get',
@@ -157,7 +157,7 @@ $(document).ready( function() {
               }
             });
           }   
-          if(cote.length==11){
+          if(cote.length==11 || cote.length==12){
             $.ajax({
               url:'/repertoire/archive/' + cote + '/detail',
               type:'get',
