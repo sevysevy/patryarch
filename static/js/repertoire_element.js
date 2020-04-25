@@ -14,8 +14,8 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#modal-serie').one('submit', '.create-serie', function(e){
-		e.preventDefault();
+	$('#modal-serie').on('submit', '.create-serie', function(){
+		
 		var form = $(this);
 		$.ajax({
 			url : form.attr('data-url'),
@@ -49,19 +49,19 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#modal-sousserie').one('submit','.create_sousserie', function(){
-		var form = $(this);
+	$('#modal-sousserie').on('click','#submit-ss', function(){
+		var form = $('.create-sousserie');
 		$.ajax({
 			url : form.attr('data-url'),
 			data: form.serialize(),
 			type: form.attr('method'),
 			dataType:'json',
+			processData: false,
 			success: function(data){	
 				$('#modal-sousserie').modal('hide');
 				
 			}
-
-		})
+		});
 		return false;
 		
 	});
@@ -84,9 +84,9 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#modal-division').one('submit', '.create-division', function(){
-		e.preventDefault();
-		var form = $(this);
+	$('#modal-division').on('click', '#submit-div', function(){
+		
+		var form = $('.create-division');
 		$.ajax({
 			url : form.attr('data-url'),
 			data: form.serialize(),
@@ -97,7 +97,7 @@ $(document).ready(function(){
 				
 			}
 
-		})
+		});
 		return false;
 	});
 
@@ -117,9 +117,9 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#modal-archives').one('submit', '.create-archive', function(){
-		e.preventDefault();
-		var form = $(this);
+	$('#modal-archives').on('click', '#submit-arch', function(){
+	
+		var form = $('.create-archive');
 		$.ajax({
 			url : form.attr('data-url'),
 			data: form.serialize(),
@@ -130,7 +130,7 @@ $(document).ready(function(){
 
 			}
 
-		})
+		});
 		return false;
 	});
 
@@ -149,7 +149,7 @@ $(document).ready(function(){
       });
     });
 
-    $('#modal-boitearchives').one('submit', '.create-boitearchives', function(){
+    $('#modal-boitearchives').on('submit', '.create-boitearchives', function(){
         var form = $(this);
         $.ajax({
             url : form.attr('data-url'),
@@ -159,7 +159,7 @@ $(document).ready(function(){
             success: function(data){
                 $('#modal-boitearchives').modal('hide');
             }
-        })
+        });
         return false;
     });
 

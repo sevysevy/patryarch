@@ -33,6 +33,7 @@ urlpatterns = [
     path('archive/<cote>/detail', views.detail_archive, name='detail_archive'),
     path('division/<cote>/add/archive', views.add_archive_to, name='add_archive'),
     path('archive/<cote>/update', views.update_archive, name='update_archive'),
+    path('archive/<cote>/delete', views.delete_archive, name='delete_archive'),
     
     path('create/boitearchives', views.create_boitearchive, name='create_boitearchive'),
     #path('')

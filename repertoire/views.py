@@ -453,8 +453,20 @@ def update_archive(request, cote):
     return JsonResponse(data)
 
 
-def delete_archives():
-    pass
+def delete_archive(request,cote):
+    repertoire_id = request.session.get('repertoire_id')
+    data = dict()
+    archive = Archives.objects.get(cote=cote,repertoireID=repertoire_id)
+    if request.method == 'POST':
+        
+        archive.delete()
+
+    context = {
+    'archive':archive
+    }
+    data['html'] = render_to_string('repertoire/archive_delete.html',context,request=request)
+    return JsonResponse(data)
+   
 
 
 
