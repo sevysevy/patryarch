@@ -62,24 +62,24 @@
 
 
 
-    $('.delete_division').on('click' , function(){
-        var el = $('#modal-detaildivision .cote')
+    $('.delete_archive').on('click' , function(){
+        var el = $('#modal-detailarchive .cote')
         var cote = $(el).text()
         $.ajax({
-            url:'/repertoire/division/'+ cote +'/delete',
+            url:'/repertoire/archive/'+ cote +'/delete',
             type:'get',
             datatype:'json',
             beforeSend: function(){
-   		        $('#modal-detaildivision').modal('hide');
-                $('#modal-delete-division').modal('show');
+   		        $('#modal-detailarchive').modal('hide');
+                $('#modal-delete-archive').modal('show');
             },
             success: function(data){
-                $('#modal-delete-division .modal-content').html(data.html);
+                $('#modal-delete-archive .modal-content').html(data.html);
             }
         });
     });
 
-    $('#modal-delete-division').on('submit', '.form-delete-division', function(){
+    $('#modal-delete-archive').on('submit', '.form-delete-archive', function(){
         var form = $(this);
         $.ajax({
             url : form.attr('data-url'),
@@ -87,7 +87,7 @@
             type: form.attr('method'),
             dataType:'json',
             success: function(data){
-               	$('#modal-delete-division').modal('hide');
+               	$('#modal-delete-archive').modal('hide');
             } 
         });
             return false;

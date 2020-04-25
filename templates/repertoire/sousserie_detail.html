@@ -37,7 +37,8 @@
               });
             });
 
-            $('#modal-sserie-update').on('submit', '.form-update-sserie', function(){
+            $('#modal-sserie-update').one('submit', '.form-update-sserie', function(e){
+              e.preventDefault();
               var form = $(this);
               $.ajax({
                 url : form.attr('data-url'),
@@ -73,7 +74,8 @@
     });
   });
 
-  $('#modal-division').on('submit', '.add-division', function(){
+  $('#modal-division').one('submit', '.add-division', function(e){
+    e.preventDefault();
     var form = $(this);
     $.ajax({
       url : form.attr('data-url'),
@@ -108,7 +110,7 @@
               });
             });
 
-        $('#modal-delete-sserie').on('submit', '.form-delete-sserie', function(){
+        $('#modal-delete-sserie').one('submit', '.form-delete-sserie', function(){
             var form = $(this);
             $.ajax({
                 url : form.attr('data-url'),
