@@ -58,28 +58,29 @@
                             <span class="username">{%if user.name %}{{ user.name }}{% else %}{{ user.email }}{% endif %}</span>
                             <i class="clip-chevron-down"></i>
                         </a>
-                    </li>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="pages_user_profile.html">
-                                <i class="clip-user-2"></i>
+                    
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="pages_user_profile.html">
+                                    <i class="clip-user-2"></i>
                                     &nbsp;My Profile
-                            </a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li>
-                            <a href="utility_lock_screen.html">
-                                <i class="clip-locked"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="utility_lock_screen.html">
+                                    <i class="clip-locked"></i>
                                     &nbsp;Lock Screen
-                            </a>
-                        </li>
-                        <li>
-                            <a href="login_example1.html">
-                                <i class="clip-exit"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'account_logout'%}">
+                                    <i class="clip-exit"></i>
                                     &nbsp;Log Out
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
                 <!-- end: USER DROPDOWN -->
