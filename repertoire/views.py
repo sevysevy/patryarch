@@ -28,15 +28,17 @@ def create_repertoire(request):
 def dashboard_repertoire(request, repertoire_id):
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     archives_num = Archives.objects.filter(repertoireID = repertoire_id).count()
+    user = request.user
     
 
     request.session["repertoire_id"] = repertoire.repertoire_id
-    return render(request,'repertoire/dashboard_repertoire.html',{'repertoire':repertoire , 'archive':archives_num})
+    return render(request,'repertoire/dashboard_repertoire.html',{'repertoire':repertoire , 'archive':archives_num, 'user':user})
 
 def repertoire(request, repertoire_id):
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     request.session["repertoire_id"] = repertoire.repertoire_id
-    return render(request, 'repertoire/repertoire.html' , {'repertoire':repertoire})
+    user = request.user
+    return render(request, 'repertoire/repertoire.html' , {'repertoire':repertoire,'user':user})
 
 
 def tree_views(request):
