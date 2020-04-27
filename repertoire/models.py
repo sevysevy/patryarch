@@ -4,20 +4,20 @@ from datetime import date
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from patryarch.utils import unique_repertoire_id_generator
-#from django.contrib.auth.models import User,Group
-#from django.contrib.auth import get_user_model
+from users.models import User
+from django.contrib.auth import get_user_model
 
 #LES MODELS DU REPERTOIRE : REPERTOIRE SERIE SOUS-SERIE DIVISION ARCHIVES
 
-#def get_sentinel_user():
- #   return get_user_model().objects.get_or_create(username='Utilisateur Supprimer')[0]
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='Utilisateur Supprimer')[0]
 
 class Repertoire(models.Model):
     repertoire_id      = models.CharField(max_length=20 , unique=True)
     nom                = models.CharField (max_length = 200)
     description        = models.TextField(default='')
-    #admin             = models.ManyToManyField(User)
-    #Proprietaire      = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    managers           = models.ManyToManyField(User)
+    admin              = models.ForeignKey(User, on_delete=models.CASCADE,related_name='myrepertoire', default=1)
 
     def __str__(self):
         return '%s' % (self.nom )
@@ -38,7 +38,7 @@ class Serie(models.Model):
     
     tag        = models.CharField(max_length=10,default="serie")            #Utiliser par treeviewJS pour l'affichage du repertoire
     repertoireID      = models.CharField(max_length=20,default='')
-    #creer_par  = c*z""""""""""""             kmodels.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
@@ -55,7 +55,7 @@ class SousSerie(models.Model):
 
     tag       = models.CharField(max_length=10,default="sousserie") #Utiliser par treeviewJS pour l'affichage du repertoire
     repertoireID    = models.CharField(max_length=20,default='')
-    #creer_par = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    creer_par = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
@@ -90,7 +90,7 @@ class Division(models.Model):
 
     tag        = models.CharField(max_length=10,default="division")
     repertoireID    = models.CharField(max_length=20,default='')
-    #creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
 
     def __str__(self):
@@ -131,7 +131,7 @@ class Archives(models.Model):
 
     tag              = models.CharField(max_length=10,default="archive")
     repertoireID     = models.CharField(max_length=20,default='')
-    #creer_par        = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user),default=1)
+    creer_par        = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )

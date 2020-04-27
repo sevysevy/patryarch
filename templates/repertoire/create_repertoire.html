@@ -90,9 +90,15 @@
                 <div class="row">
                  	<form method="post">{% csrf_token %}
                 		{{form.as_p}}
-                		<button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>
+                		<button type="submit" class="btn btn-primary trans_300" value="Submit"> ENREGISTRER</button>
             		</form>
                 </div>
+                <hr>
+                {% if request.user.myrepertoire.first %}
+                <div class = 'row'>
+                    <a class="btn btn-danger trans_300" href="{% url 'repertoire_archives' user.myrepertoire.first.repertoire_id %}"> ANNULER</a>
+                </div>
+                {% endif %}
                 <!-- end: PAGE CONTENT-->
                
             </div>

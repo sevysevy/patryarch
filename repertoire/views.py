@@ -3,23 +3,26 @@ from django.http import  HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy,reverse
 from django.template.loader import render_to_string
 from django.forms.models import model_to_dict
+from  django.contrib.auth.decorators import login_required
 from .models import *
 from .form import *
 from .utils import json_tree
 
-
+@login_required(login_url = '/accounts/login/')
 def create_repertoire(request):
+    user = request.user
     if request.method == 'POST':
         form = repertoireform(request.POST)
         if form.is_valid():
+            form.instance.admin = request.user
             repertoire = form.save()
             return HttpResponseRedirect(reverse('repertoire_dashboard', kwargs={'repertoire_id':repertoire.repertoire_id}))
         else:
             form = repertoireform()
-            return render(request , 'repertoire/create_repertoire.html',{'form':form})
+            return render(request , 'repertoire/create_repertoire.html',{'form':form, 'user':user})
     else:
         form = repertoireform()
-        return render (request , 'repertoire/create_repertoire.html', {'form':form})
+        return render (request , 'repertoire/create_repertoire.html', {'form':form, 'user':user})
 
 
 def dashboard_repertoire(request, repertoire_id):
