@@ -93,12 +93,6 @@
                 		<button type="submit" class="btn btn-primary trans_300" value="Submit"> ENREGISTRER</button>
             		</form>
                 </div>
-                <hr>
-                {% if request.user.myrepertoire.first %}
-                <div class = 'row'>
-                    <a class="btn btn-danger trans_300" href="{% url 'repertoire_archives' user.myrepertoire.first.repertoire_id %}"> ANNULER</a>
-                </div>
-                {% endif %}
                 <!-- end: PAGE CONTENT-->
                
             </div>

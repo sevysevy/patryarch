@@ -4,9 +4,9 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('create', views.create_repertoire, name='create_repertoire'),
+    #path('create', views.create_repertoire, name='create_repertoire'),
     path('<repertoire_id>', views.repertoire, name='repertoire_archives'),
-    path('<repertoire_id>/dashboard', views.dashboard_repertoire, name='repertoire_dashboard'),
+    #path('<repertoire_id>/dashboard', views.dashboard_repertoire, name='repertoire_dashboard'),
     path('tree_views/', views.tree_views, name='repertoire_tree_views'),
 
    

@@ -6,7 +6,7 @@ $(document).ready(function(){
 		type:'get',
 		datatype:'json',
 		beforeSend: function(){
-			$('#modal-serie').modal('show');
+			$('#modal-serie').modal({backdrop:'static',keyboard:false});
 		},
 		success: function(data){
 			$('#modal-serie .modal-content').html(data.html_form);

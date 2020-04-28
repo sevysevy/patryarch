@@ -16,7 +16,7 @@ def create_repertoire(request):
         if form.is_valid():
             form.instance.admin = request.user
             repertoire = form.save()
-            return HttpResponseRedirect(reverse('repertoire_dashboard', kwargs={'repertoire_id':repertoire.repertoire_id}))
+            return HttpResponseRedirect(reverse('repertoire_dashboard'),kwarg={'repertoire_id' : repertoire.repertoire_id})
         else:
             form = repertoireform()
             return render(request , 'repertoire/create_repertoire.html',{'form':form, 'user':user})
@@ -25,19 +25,24 @@ def create_repertoire(request):
         return render (request , 'repertoire/create_repertoire.html', {'form':form, 'user':user})
 
 
+
 def dashboard_repertoire(request, repertoire_id):
+
+    user = request.user
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     archives_num = Archives.objects.filter(repertoireID = repertoire_id).count()
-    user = request.user
     
 
     request.session["repertoire_id"] = repertoire.repertoire_id
     return render(request,'repertoire/dashboard_repertoire.html',{'repertoire':repertoire , 'archive':archives_num, 'user':user})
 
+
+
 def repertoire(request, repertoire_id):
+    user = request.user
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     request.session["repertoire_id"] = repertoire.repertoire_id
-    user = request.user
+
     return render(request, 'repertoire/repertoire.html' , {'repertoire':repertoire,'user':user})
 
 
