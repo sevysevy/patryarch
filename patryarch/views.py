@@ -7,7 +7,8 @@ from django.urls import reverse_lazy,reverse
 def index(request):
 	if request.user.is_authenticated:
 		if request.user.myrepertoire.first() :
-			return HttpResponseRedirect(reverse('repertoire_dashboard'),kwarg={'repertoire_id' : request.user.myrepertoire.first().repertoire_id})
+			repertoire = request.user.myrepertoire.first()
+			return HttpResponseRedirect(reverse('repertoire_dashboard',args=(repertoire.repertoire_id,)))
 		else :
 			return create_repertoire(request)
 
