@@ -5,7 +5,7 @@ from repertoire.views import dashboard_repertoire,create_repertoire
 def index(request):
 	if request.user.is_authenticated:
 		if request.user.myrepertoire.first() :
-			return dashboard_repertoire(request, request.user.myrepertoire.first().repertoire_id )
+			return HttpResponseRedirect(reverse('repertoire_dashboard'),kwarg={'repertoire_id' : request.user.myrepertoire.first().repertoire_id}) )
 		else :
 			return create_repertoire(request)
 
