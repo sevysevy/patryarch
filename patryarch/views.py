@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from repertoire.views import dashboard_repertoire,create_repertoire
 from django.http import  HttpResponseRedirect
+from django.urls import reverse_lazy,reverse
 
 
 def index(request):
