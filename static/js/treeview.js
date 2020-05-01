@@ -13,18 +13,20 @@ $(document).ready( function() {
     var info = data.text
     var index_endcote = info.indexOf(" ")
     var cote = info.substr(0,index_endcote)
+    
     if(cote.length==1){
       $.ajax({
         url:'/repertoire/serie/' + cote + '/detail',
         type:'get',
         datatype:'json',
         beforeSend: function(){
-          $('#modal-detailserie').modal('show');
+          $('#modal-detailserie').modal({backdrop:'static',keyboard:false});
         },
         success: function(data){
           $('#modal-detailserie .modal-content').html(data.html);
         }
       });
+
     }
     if(cote.length ==3 || cote.length ==4 ) {
       $.ajax({

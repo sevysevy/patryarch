@@ -7,7 +7,10 @@ urlpatterns = [
     path('create', views.create_repertoire, name='create_repertoire'),
     path('<repertoire_id>', views.repertoire, name='repertoire_archives'),
     path('<repertoire_id>/dashboard', views.dashboard_repertoire, name='repertoire_dashboard'),
+    path('<repertoire_id>/parametre', views.update_repertoire, name='repertoire_update'),
     path('tree_views/', views.tree_views, name='repertoire_tree_views'),
+
+    path('modal', views.modal, name='modal'),
 
    
 

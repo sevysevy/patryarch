@@ -1,0 +1,62 @@
+{% extends "repertoire/base.html" %}
+{% load static %}
+
+{% block page-header %} <h1>{{repertoire.nom}}</h1> {% endblock %}
+
+
+
+{% block content %}
+<div class =" center row">
+<p>Description du repertoire :{{repertoire.description}} </p>
+<p>Administrateur :{{repertoire.admin}}</p>
+</div><hr>
+<div class ="center">
+	<a class='btn btn-success serie-form active'  href="#">Ajouter un manager</a>
+	<a class='btn btn-warning update active'  href="#">Modifier les informations</a>
+	<a class='btn btn-danger serie-form active'  href="#">Supprimer le repertoire</a>
+</div>
+
+
+<div class="modal fade" id ="modal-parametre">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.update').on('click' , function(){
+		$.ajax({
+		url:'/repertoire/create/serie',
+		type:'get',
+		datatype:'json',
+		beforeSend: function(){
+			$('#modal-serie').modal({backdrop:'static',keyboard:false});
+		},
+		success: function(data){
+			$('#modal-serie .modal-content').html(data.html_form);
+		}
+		});
+	});
+
+	$('#modal-serie').on('submit', '.create-serie', function(){
+		
+		var form = $(this);
+		$.ajax({
+			url : form.attr('data-url'),
+			data: form.serialize(),
+			type: form.attr('method'),
+			dataType:'json',
+			success: function(data){
+				
+					$('#modal-serie').modal('hide');
+					
+				}
+
+		});
+		return false;
+		
+	});
+
+</script>
+
+{% endblock %}

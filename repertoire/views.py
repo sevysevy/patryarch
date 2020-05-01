@@ -40,8 +40,9 @@ def dashboard_repertoire(request, repertoire_id):
 
 def repertoire(request, repertoire_id):
     user = request.user
-    repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
-    request.session["repertoire_id"] = repertoire.repertoire_id
+    repertoire_i = request.session.get('repertoire_id')
+    repertoire = Repertoire.objects.get(repertoire_id = repertoire_i)
+    request.session["repertoire_id"] = repertoire_i
 
     return render(request, 'repertoire/repertoire.html' , {'repertoire':repertoire,'user':user})
 
@@ -104,12 +105,22 @@ def tree_views(request):
 
 
 
-def update_repertoire():
-    pass
+def update_repertoire(request, repertoire_id):
+    user = request.user
+    repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
+    return render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user})
 
 
 def delete_repertoire():
     pass
+
+def modal (request):
+    repertoire_i = request.session.get('repertoire_id')
+    repertoire = Repertoire.objects.get(repertoire_id = repertoire_i)
+    data = dict()
+    data['html'] = render_to_string('repertoire/modal.html',request = request)
+    return JsonResponse(data)
+
 
 def create_serie(request):
     repertoire_id = request.session.get('repertoire_id')
@@ -199,9 +210,17 @@ def create_sousserie(request):
     if request.method == 'POST':
         form = sousserieform(repertoire_id, request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            sousserie = form.save()
-            data['form_is_valid'] = True
+            cote = form.cleaned_data['cote']
+            if SousSerie.objects.filter(repertoireID=repertoire_id).filter(cote=cote).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/create_sousserie.html',context,request=request)
+                return JsonResponse(data)
+            else:
+                form.instance.repertoireID = repertoire_id
+                sousserie = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -221,10 +240,18 @@ def add_sousserie_to(request,cote):
     if request.method == 'POST':
         form = m_sousserieform(request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            form.instance.serie = serie
-            sousserie = form.save()
-            data['form_is_valid'] = True
+            numero = form.cleaned_data['numero']
+            if SousSerie.objects.filter(serie=serie).filter(numero=numero).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/add_sousserie.html',context,request=request)
+                return JsonResponse(data)
+            else:
+                form.instance.repertoireID = repertoire_id
+                form.instance.serie = serie
+                sousserie = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -233,7 +260,8 @@ def add_sousserie_to(request,cote):
         form = m_sousserieform()
     context = {
     'form' : form,
-    'cote' :cote
+    'cote' :cote,
+    'serie':serie
     }
     data['html_form'] = render_to_string('repertoire/add_sousserie.html',context,request=request)
     return JsonResponse(data)
@@ -294,10 +322,19 @@ def add_division_to(request, cote):
     if request.method == 'POST':
         form = m_divisionform(request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            form.instance.sousserie = sserie
-            division = form.save()
-            data['form_is_valid'] = True
+            numero = form.cleaned_data['numero']
+            if Division.objects.filter(sousserie=sserie).filter(numero=numero).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/add_division.html',context,request=request)
+                return JsonResponse(data)
+
+            else:
+                form.instance.repertoireID = repertoire_id
+                form.instance.sousserie = sserie
+                division = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -306,7 +343,8 @@ def add_division_to(request, cote):
         form = m_divisionform()
     context = {
     'form' : form,
-    'cote' :cote
+    'cote' :cote,
+    'sserie':sserie
     }
     data['html_form'] = render_to_string('repertoire/add_division.html',context,request=request)
     return JsonResponse(data)
@@ -319,9 +357,17 @@ def create_division(request):
     if request.method == 'POST':
         form = divisionform(repertoire_id ,request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            division = form.save()
-            data['form_is_valid'] = True
+            cote = form.cleaned_data['cote']
+            if SousSerie.objects.filter(repertoireID=repertoire_id).filter(cote=cote).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/create_division.html',context,request=request)
+                return JsonResponse(data)
+            else:
+                form.instance.repertoireID = repertoire_id
+                division = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -389,10 +435,19 @@ def add_archive_to(request, cote):
     if request.method == 'POST':
         form = m_archiveform(request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            form.instance.division = division
-            archive = form.save()
-            data['form_is_valid'] = True
+            numero = form.cleaned_data['numero']
+            if Archives.objects.filter(division=division).filter(numero=numero).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/add_archives.html',context,request=request)
+                return JsonResponse(data)
+
+            else:
+                form.instance.repertoireID = repertoire_id
+                form.instance.division = division
+                archive = form.save()
+                data['form_is_valid'] = True
             
         else:
             data['form_is_valid'] = False
@@ -401,7 +456,8 @@ def add_archive_to(request, cote):
         form = m_archiveform()
     context = {
     'form' : form,
-    'cote' :cote
+    'cote' :cote,
+    'division':division
     }
     data['html_form'] = render_to_string('repertoire/add_archives.html',context,request=request)
     return JsonResponse(data)
@@ -416,9 +472,18 @@ def create_archives(request):
     if request.method == 'POST':
         form = archivesform(repertoire_id, request.POST)
         if form.is_valid():
-            form.instance.repertoireID = repertoire_id
-            archives = form.save()
-            data['form_is_valid'] = True
+            cote = form.cleaned_data['cote']
+            if SousSerie.objects.filter(repertoireID=repertoire_id).filter(cote=cote).exists():
+                context = {
+                    'form' : form
+                }
+                data['html_form'] = render_to_string('repertoire/create_division.html',context,request=request)
+                return JsonResponse(data)
+
+            else:
+                form.instance.repertoireID = repertoire_id
+                archives = form.save()
+                data['form_is_valid'] = True
 
         else:
             data['form_is_valid'] = False

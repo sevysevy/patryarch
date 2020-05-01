@@ -40,6 +40,9 @@ class Serie(models.Model):
     repertoireID      = models.CharField(max_length=20,default='')
     creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
+    class Meta:
+        ordering = ('cote', )
+
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
 
@@ -57,6 +60,9 @@ class SousSerie(models.Model):
     repertoireID    = models.CharField(max_length=20,default='')
     creer_par = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
+    class Meta:
+        ordering = ('cote', )
+
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
 
@@ -65,15 +71,18 @@ class SousSerie(models.Model):
 def sous_serie_pre_save_receiver(sender, instance, *args, **kwargs):#on determine la cote de la sous serie de maniere automatique
     if not instance.cote:
         serie = instance.serie
-        ss = serie.sousserie_set.last()
-
-        if ss == None:
-            instance.cote = instance.serie.cote + '-1'
-            instance.numero = 1
+        if not instance.numero:
+            ss = serie.sousserie_set.last()
+            if ss == None:
+                instance.cote = instance.serie.cote + '-1'
+                instance.numero = 1
+            else:
+                num = ss.numero + 1
+                instance.cote = instance.serie.cote + '-'+ str(num)
+                instance.numero = num
         else:
-            num = ss.numero + 1
-            instance.cote = instance.serie.cote + '-'+ str(num)
-            instance.numero = num
+            instance.cote = instance.serie.cote + '-'+ str(instance.numero)
+
 
 
 
@@ -92,6 +101,9 @@ class Division(models.Model):
     repertoireID    = models.CharField(max_length=20,default='')
     creer_par  = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
+    class Meta:
+        ordering = ('cote', )
+
 
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
@@ -100,14 +112,18 @@ class Division(models.Model):
 def division_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.cote:
         sousserie = instance.sousserie
-        div = sousserie.division_set.last()
-        if div == None:
-            instance.cote = instance.sousserie.cote + '-100'
-            instance.numero = 100
+        if not instance.numero:
+            div = sousserie.division_set.last()
+            if div == None:
+                instance.cote = instance.sousserie.cote + '-100'
+                instance.numero = 100
+            else:
+                num = div.numero * 100
+                instance.cote = instance.sousserie.cote + '-' + str(num)
+                instance.numero = num
         else:
-            num = div.numero + 100
-            instance.cote = instance.sousserie.cote + '-' + str(num)
-            instance.numero = num
+            instance.cote = instance.sousserie.cote + '-' + str(instance.numero*100)
+
 
 
 pre_save.connect(division_pre_save_receiver, sender=Division)
@@ -133,6 +149,9 @@ class Archives(models.Model):
     repertoireID     = models.CharField(max_length=20,default='')
     creer_par        = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), default=1)
 
+    class Meta:
+        ordering = ('cote', )
+
     def __str__(self):
         return '%s -- %s' % (self.cote, self.nom )
 
@@ -151,14 +170,19 @@ class Archives(models.Model):
 def archives_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.cote:
         division = instance.division
-        arch = division.archives_set.last()
-        if arch == None:
-            instance.cote = instance.division.cote + '-001'
-            instance.numero = 1
+        if not instance.numero:
+            arch = division.archives_set.last()
+            if arch == None:
+                instance.cote = instance.division.cote + '-001'
+                instance.numero = 1
+            else:
+                num = arch.numero + 1
+                instance.cote = instance.division.cote + '-00' + str(num)
+                instance.numero = num
+
         else:
-            num = arch.numero + 1
-            instance.cote = instance.division.cote + '-00' + str(num)
-            instance.numero = num
+            instance.cote = instance.division.cote + '-00' + str(instance.numero)
+
         nbr = instance.boite.nombre_doc
         instance.boite.nombre_doc = nbr + 1
 

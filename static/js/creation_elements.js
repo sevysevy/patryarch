@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
 	$('.serie-form').on('click' , function(){
 		$.ajax({
 		url:'/repertoire/create/serie',

@@ -6,7 +6,14 @@
         </button>
     </div>
     <div class="modal-body">
-        {{form.as_p}}
+        <p>Boite d'archive :{{form.boite}}</p>
+        <p>COTE : <strong>{{division.cote}}- </strong>{{form.numero}}</p>
+        <p>Nom :{{form.nom}}</p>
+        <p>Nombre de sous dossier :{{form.nbrSousDoc}}</p>
+        <p>Description :{{form.description}}</p>
+        <p>Date extrême minimale :{{form.dateExtrem_min}}</p>
+        <p>Date extrême maximale :{{form.dateExtrem_max}}</p>
+        <p>Date limite de conservation :{{form.dua}}</p>
     </div>
     <div class="modal-footer">
         <button type="submit" class="search_button trans_300" value="Submit"> ENREGISTRER</button>

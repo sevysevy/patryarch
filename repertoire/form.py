@@ -35,6 +35,7 @@ class sousserieform(forms.ModelForm):
         model = SousSerie
         fields = [
             'serie',
+            'cote',
             'nom',
             
         ]
@@ -44,6 +45,7 @@ class m_sousserieform(forms.ModelForm):
     class Meta:
         model = SousSerie
         fields = [
+            'numero',
             'nom',
             
         ]
@@ -58,6 +60,7 @@ class divisionform(forms.ModelForm):
         model = Division
         fields = [
             'sousserie',
+            'cote',
             'nom',
             
         ]
@@ -67,6 +70,7 @@ class m_divisionform(forms.ModelForm):
     class Meta:
         model = Division
         fields = [
+            'numero',
             'nom',
             
         ]
@@ -82,6 +86,7 @@ class archivesform(forms.ModelForm):
         fields = [
             'division',
             'boite',
+            'cote',
             'nom',
             'nbrSousDoc',
             'description',
@@ -98,6 +103,7 @@ class m_archiveform(forms.ModelForm):
         fields = [
             'boite',
             'nom',
+            'numero',
             'nbrSousDoc',
             'description',
             'dateExtrem_min',

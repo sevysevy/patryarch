@@ -113,23 +113,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{% url 'repertoire_update' repertoire.repertoire_id %}">
                             <i class="clip-cog-2"></i>
                             <span class="title">Paramètres</span><i class="icon-arrow"></i>
                             <span class="selected"></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="login_example1.html">
-                                    <span class="title">Login Form Example 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login_example2.html">
-                                    <span class="title">Login Form Example 2</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li> 
                 </ul>
                 <!-- end: MAIN NAVIGATION MENU -->
@@ -190,7 +178,7 @@
     <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
     <!--<![endif]-->
 
-    <script type="text/javascript" src="{% static 'js/repertoire_element.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/creation_elements.js' %}"></script>
     
     <script type="text/javascript" src="{% static 'js/treeview.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/min/bootstrap-treeview.min.js' %}"></script>
