@@ -1,27 +1,123 @@
 {% extends "repertoire/base.html" %}
 {% load static %}
 
-{% block page-header %} <h1>{{repertoire.nom}}</h1> {% endblock %}
-
-
+{% block page-header %}
+ <h1>Parametre du repertoire</h1>   
+{% endblock %}
 
 {% block content %}
-<div class =" center row">
-<p>Description du repertoire :{{repertoire.description}} </p>
-<p>Administrateur :{{repertoire.admin}}</p>
-</div><hr>
-<div class ="center">
-	<a class='btn btn-success serie-form active'  href="#">Ajouter un manager</a>
-	<a class='btn btn-warning update active'  href="#">Modifier les informations</a>
-	<a class='btn btn-danger serie-form active'  href="#">Supprimer le repertoire</a>
-</div>
+
+<section > 
+	<h2 class="center">Details du repertoire</h2>
+	<div class ="row">
+		<h3>Nom :{{repertoire.nom}}</h3>
+		<h3>Description du repertoire :{{repertoire.description}} </h3>
+		<h3>Proprietaire :{{repertoire.admin}}</h3>
+		<h3>Code :{{repertoire.repertoire_id}}</h3>
+		<a class='btn btn-warning update active'  href="#">Modifier les informations</a>
+		<a class='btn btn-danger serie-form active'  href="#">Supprimer le repertoire</a>
+	</div><hr>
+</section>
 
 
-<div class="modal fade" id ="modal-parametre">
-	<div class="modal-dialog">
-		<div class="modal-content"></div>
+<section > 
+	<h2 class="center">Les Managers du repertoire</h2>	
+	<div class="modal fade" id ="modal-parametre">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
 	</div>
+ 	<div id="panel_projects" class="tab-pane">
+   		<table class="table table-striped table-bordered table-hover" id="projects">
+        	<thead>
+            	<tr>
+                	<th>Nom</th>
+                	<th class="hidden-xs">Email</th>
+                	<th>N Telephone</th>
+              		<th class="hidden-xs">Debut d'activité</th>
+                	<th class="hidden-xs center">Rôle</th>
+                	<th></th>
+            	</tr>
+        	</thead>
+        	<tbody>
+            	<tr>
+                	<td>{{repertoire.admin.name}}</td>
+                	<td class="hidden-xs">{{repertoire.admin.email}}</td>
+                	<td>{{repertoire.admin.phone_number}}</td>
+                	<td class="hidden-xs">
+                    	{{repertoire.admin.Date_joined}}
+                	</td>
+               		<td class="center hidden-xs"><span class="label label-danger">ADMINISTRATEUR</span></td>
+                	<td class="center">
+                    	<div class="visible-md visible-lg hidden-sm hidden-xs">
+                        	<a href="#" class="btn btn-teal tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>                               
+                        	<a href="#" class="btn btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                    	</div>                                                                
+                    	<div class="visible-xs visible-sm hidden-md hidden-lg">
+                        	<div class="btn-group">
+                            	<a class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
+                                	<i class="fa fa-cog"></i> <span class="caret"></span>
+                            	</a>
+                            	<ul role="menu" class="dropdown-menu pull-right">                                
+                                	<li role="presentation">                                
+                                    	<a role="menuitem" tabindex="-1" href="#">                                
+                                        	<i class="fa fa-edit"></i> Edit                                
+                                    	</a>                                
+                                	</li>                                
+                                   	<li role="presentation">
+                                    	<a role="menuitem" tabindex="-1" href="#">
+                                        	<i class="fa fa-times"></i> Remove
+                                    	</a>
+                                	</li>                                
+                            	</ul>
+                        	</div>
+                    	</div>
+               	 	</td>
+            	</tr>
+             {% if repertoire.manager %}{% for manager in repertoire.manager.all %}
+            	<tr>
+                	<td>{{manager.name}}</td>
+                	<td class="hidden-xs">{{manager.email}}</td>
+                	<td>{{manager.phone_number}}</td>
+                	<td class="hidden-xs">
+                    	{{manager.Date_joined}}
+                	</td>
+               		<td class="center hidden-xs"><span class="label label-success">MANAGER</span></td>
+                	<td class="center">
+                    	<div class="visible-md visible-lg hidden-sm hidden-xs">
+                        	<a href="#" class="btn btn-teal tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-edit"></i></a>                               
+                        	<a href="#" class="btn btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                    	</div>                                                                
+                    	<div class="visible-xs visible-sm hidden-md hidden-lg">
+                        	<div class="btn-group">
+                            	<a class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
+                                	<i class="fa fa-cog"></i> <span class="caret"></span>
+                            	</a>
+                            	<ul role="menu" class="dropdown-menu pull-right">                                
+                                	<li role="presentation">                                
+                                    	<a role="menuitem" tabindex="-1" href="#">                                
+                                        	<i class="fa fa-edit"></i> Edit                                
+                                    	</a>                                
+                                	</li>                                
+                                	<li role="presentation">
+                                    	<a role="menuitem" tabindex="-1" href="#">
+                                        	<i class="fa fa-times"></i> Remove
+                                    	</a>
+                                	</li>                                
+                            	</ul>
+                        	</div>
+                    	</div>
+               	 	</td>
+            	</tr>
+              {% endfor %}{% endif %}
+        	</tbody>
+    	</table>
+ 	</div>
+
+ <div class ="center">
+	<a class='btn btn-success'  href="#">Ajouter un manager</a>
 </div>
+                                            
 
 <script type="text/javascript">
 	$('.update').on('click' , function(){

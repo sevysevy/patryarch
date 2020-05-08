@@ -105,7 +105,7 @@ def tree_views(request):
 
 
 
-def update_repertoire(request, repertoire_id):
+def parametre_repertoire(request, repertoire_id):
     user = request.user
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
     return render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user})
