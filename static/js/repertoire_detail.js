@@ -1,21 +1,12 @@
 $(document).ready(function(){
-	$('.treeview').delegate('.list-group-item','click', function(){
-        var info = $(this).text()
-		var index_endcote = info.indexOf(" ")
-		var cote = info.substr(0,index_endcote)
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
 
-		$.ajax({
-			url:'/repertoire/serie/' + cote + '/detail/',
-			type:'get',
-			datatype:'json',
-			beforeSend: function(){
-				$('#modal-detailserie').modal('show');
-			},
-			success: function(data){
-				$('#modal-detailserie .modal-content').html(data.html);
-			}
-		});
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
 
-    }); 
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	}); 
 
 });

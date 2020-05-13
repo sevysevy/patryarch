@@ -55,12 +55,18 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+ROLE_CHOICES = (
+    ("ADMINISTRATEUR", "administrateur"),
+    ("MANAGER", "manager"),
+
+    )
 
 class User(AbstractBaseUser, PermissionsMixin):
     email         = models.EmailField(max_length=254, unique=True)
     name          = models.CharField(max_length=254,null = True)
     last_name     = models.CharField(max_length=254,null = True)
     phone_number  = models.CharField(max_length = 15, blank = True )
+    role          = models.CharField(max_length = 15, choices=ROLE_CHOICES, default="manager" )
     #image         = models.ImageField(upload_to=upload_user_image, blank=True)
     is_staff      = models.BooleanField(default=False)
     is_superuser  = models.BooleanField(default=False)

@@ -1,0 +1,52 @@
+
+
+ul.tabs{
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+		}
+ul.tabs li{
+			background: none;
+			display: inline-block;
+			padding: 5px 15px;
+			cursor: pointer;
+		}
+
+ul.tabs li.current{
+			background: #f1f1f2;
+			color: #232372;
+			box-shadow: inset 0.1em 0.1em 0.28em #232372;
+			border-radius: 0.35rem;
+		}
+
+.tab-content{
+			display: none;
+			background: #f1f1f2;
+			padding: 15px;
+			border-radius: 0.35rem;
+			border-color: #232372;			
+		}
+
+.tab-content.current{
+			display: inherit;
+		}
+
+
+
+.form-user, .form-detail{
+	position: relative;
+	left: 30%;
+}
+
+.form-user input,.form-detail input{
+	margin: 30px;
+	border-top-style: hidden !important;
+	border-left-style: hidden !important;
+	border-right-style: hidden !important;
+	border-bottom-style: groove !important;
+	background-color: #f1e8e8 !important;
+	width: 280px;
+	color: #232372 !important;
+}
+
+

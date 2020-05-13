@@ -13,6 +13,29 @@ class repertoireform(forms.ModelForm):
             
         ]
 
+class repertoire_updateform(forms.ModelForm):
+    description = forms.CharField(widget = forms.TextInput(attrs={'class':'input-text'}), label='', required = False)
+
+    def __init__ (self , repertoire_id, *args , **kwargs ):
+        super ( repertoire_updateform, self ).__init__(*args,**kwargs)
+        self.fields['repertoire_id'].initial = Repertoire.objects.get(repertoire_id = repertoire_id).repertoire_id
+        self.fields['nom'].initial          = Repertoire.objects.get(repertoire_id = repertoire_id).nom
+        self.fields['description'].initial   = Repertoire.objects.get(repertoire_id = repertoire_id).description
+        self.fields['admin'].initial         = Repertoire.objects.get(repertoire_id = repertoire_id).admin
+
+    repertoire_id = forms.CharField(widget =forms.TextInput(attrs={'disabled':True,}), label='' )
+    admin = forms.CharField(widget =forms.TextInput(attrs={'disabled':True,}), label='' )
+
+    class Meta:
+        model = Repertoire
+        fields = [
+            'repertoire_id',
+            'nom',
+            'description',
+            'admin',
+            
+        ]
+
 
 class serieform(forms.ModelForm):
 

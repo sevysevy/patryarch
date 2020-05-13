@@ -1,33 +1,45 @@
 {% extends "repertoire/base.html" %}
 {% load static %}
 
-{% block page-header %}
- <h1>Parametre du repertoire</h1>   
+{% block breadcrumb %}
+
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">INFORMATIONS DU REPERTOIRE</li>
+		<li class="tab-link" data-tab="tab-2">GESTION DES ARCHIVISTES</li>
+		<li class="tab-link" data-tab="tab-3">INFORMATIONS DE FACTURATION</li>
+		<li class="tab-link" data-tab="tab-4">INFORMATIONS PERSONNELLES</li>
+	</ul>
+
+
 {% endblock %}
+
+
+{% block page-header %}
+   
+{% endblock %}
+
+
 
 {% block content %}
 
-<section > 
-	<h2 class="center">Details du repertoire</h2>
-	<div class ="row">
-		<h3>Nom :{{repertoire.nom}}</h3>
-		<h3>Description du repertoire :{{repertoire.description}} </h3>
-		<h3>Proprietaire :{{repertoire.admin}}</h3>
-		<h3>Code :{{repertoire.repertoire_id}}</h3>
-		<a class='btn btn-warning update active'  href="#">Modifier les informations</a>
-		<a class='btn btn-danger serie-form active'  href="#">Supprimer le repertoire</a>
-	</div><hr>
-</section>
 
 
-<section > 
-	<h2 class="center">Les Managers du repertoire</h2>	
-	<div class="modal fade" id ="modal-parametre">
-		<div class="modal-dialog">
-			<div class="modal-content"></div>
-		</div>
+	<div id="tab-1" class="tab-content current">
+		<form method="post" data-url="" class="form-detail" enctype="multipart/form-data">{% csrf_token %}
+            <table>
+        	    <tr><td> IDENTIFIANT </td><td>{{form.repertoire_id}}</td></tr>
+                <tr><td>NOM </td><td>{{form.nom}}</td></tr>
+                <tr><td>DESCRIPTION </td><td>{{form.description}}</td></tr>
+                <tr><td>PROPRIETAIRE </td><td>{{form.admin}}</td></tr>
+            </table>
+            <a  class="btn btn-danger trans_300" href=""> SUPPRIMER</a>
+            <a  class="btn btn-warning trans_300" href="" > ANNULER</a>
+            <button type="submit" class="btn btn-success trans_300" value="Submit"> SAUVEGARDER</button>
+		</form>
 	</div>
- 	<div id="panel_projects" class="tab-pane">
+
+
+	<div id="tab-2" class="tab-content"> 
    		<table class="table table-striped table-bordered table-hover" id="projects">
         	<thead>
             	<tr>
@@ -45,7 +57,7 @@
                 	<td class="hidden-xs">{{repertoire.admin.email}}</td>
                 	<td>{{repertoire.admin.phone_number}}</td>
                 	<td class="hidden-xs">
-                    	{{repertoire.admin.Date_joined}}
+                    	{{repertoire.admin.date_joined}}
                 	</td>
                		<td class="center hidden-xs"><span class="label label-danger">ADMINISTRATEUR</span></td>
                 	<td class="center">
@@ -112,12 +124,29 @@
               {% endfor %}{% endif %}
         	</tbody>
     	</table>
- 	</div>
+ 		<div class ="center">
+			<a class='btn btn-success'  href="#">Ajouter un manager</a>
+		</div>
+	</div>
 
- <div class ="center">
-	<a class='btn btn-success'  href="#">Ajouter un manager</a>
-</div>
-                                            
+
+	<div id="tab-4" class="tab-content ">
+	<form method="post" data-url="" class="form-user" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+        	<tr><td>NOM </td><td>{{userform.name}}</td></tr>
+            <tr><td>PRENOM </td><td>{{userform.last_name}}</td></tr>
+            <tr><td>EMAIL </td><td>{{userform.email}}</td></tr>
+            <tr><td>TELEPHONE </td><td>{{userform.phone_number}}</td></tr>
+            <tr><td>ROLE </td><td><input type="text" id ="input-search" value="{{user.role}}" ></td></tr>
+            <tr><td>INSCRIT LE </td><td>{{userform.date_joined}}</td></tr>
+            <tr><td>DERNIERE CONNEXION </td><td>{{userform.last_login}}</td></tr>
+        </table>
+        <button  class="btn btn-danger trans_300" value="Submit"> SUPPRIMER</button>
+        <button  class="btn btn-warning trans_300" value="Submit"> ANNULER</button>
+        <button type="submit" class="btn btn-success trans_300" value="Submit"> SAUVEGARDER</button>
+	</form>
+	</div>
+
 
 <script type="text/javascript">
 	$('.update').on('click' , function(){
@@ -152,6 +181,8 @@
 		return false;
 		
 	});
+
+
 
 </script>
 
