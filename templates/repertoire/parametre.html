@@ -25,16 +25,17 @@
 
 
 	<div id="tab-1" class="tab-content current">
-		<form method="post" data-url="" class="form-detail" enctype="multipart/form-data">{% csrf_token %}
+		<form method="POST" class="form-detail" enctype="multipart/form-data">{% csrf_token %}
             <table>
-        	    <tr><td> IDENTIFIANT </td><td>{{form.repertoire_id}}</td></tr>
+        	    <tr><td> IDENTIFIANT </td><td>{{repertoire.repertoire_id}}</td></tr>
                 <tr><td>NOM </td><td>{{form.nom}}</td></tr>
                 <tr><td>DESCRIPTION </td><td>{{form.description}}</td></tr>
-                <tr><td>PROPRIETAIRE </td><td>{{form.admin}}</td></tr>
+                <tr><td>PROPRIETAIRE ---  </td><td>{{repertoire.admin}}</td></tr>
             </table>
+            <hr>
             <a  class="btn btn-danger trans_300" href=""> SUPPRIMER</a>
             <a  class="btn btn-warning trans_300" href="" > ANNULER</a>
-            <button type="submit" class="btn btn-success trans_300" value="Submit"> SAUVEGARDER</button>
+            <button type="submit" class="btn btn-success trans_300" value="submit"> SAUVEGARDER</button>
 		</form>
 	</div>
 
@@ -123,7 +124,7 @@
             	</tr>
               {% endfor %}{% endif %}
         	</tbody>
-    	</table>
+    	</table><hr>
  		<div class ="center">
 			<a class='btn btn-success'  href="#">Ajouter un manager</a>
 		</div>
@@ -131,59 +132,20 @@
 
 
 	<div id="tab-4" class="tab-content ">
-	<form method="post" data-url="" class="form-user" enctype="multipart/form-data">{% csrf_token %}
+	<form method="post" class="form-user" enctype="multipart/form-data">{% csrf_token %}
         <table>
         	<tr><td>NOM </td><td>{{userform.name}}</td></tr>
             <tr><td>PRENOM </td><td>{{userform.last_name}}</td></tr>
-            <tr><td>EMAIL </td><td>{{userform.email}}</td></tr>
+            <tr><td>EMAIL </td><td>{{user.email}}</td></tr>
             <tr><td>TELEPHONE </td><td>{{userform.phone_number}}</td></tr>
             <tr><td>ROLE </td><td><input type="text" id ="input-search" value="{{user.role}}" ></td></tr>
-            <tr><td>INSCRIT LE </td><td>{{userform.date_joined}}</td></tr>
-            <tr><td>DERNIERE CONNEXION </td><td>{{userform.last_login}}</td></tr>
-        </table>
+            <tr><td>INSCRIT LE </td><td>{{user.date_joined}}</td></tr>
+            <tr><td>DERNIERE CONNEXION </td><td>{{user.last_login}}</td></tr>
+        </table><hr>
         <button  class="btn btn-danger trans_300" value="Submit"> SUPPRIMER</button>
         <button  class="btn btn-warning trans_300" value="Submit"> ANNULER</button>
         <button type="submit" class="btn btn-success trans_300" value="Submit"> SAUVEGARDER</button>
 	</form>
 	</div>
-
-
-<script type="text/javascript">
-	$('.update').on('click' , function(){
-		$.ajax({
-		url:'/repertoire/create/serie',
-		type:'get',
-		datatype:'json',
-		beforeSend: function(){
-			$('#modal-serie').modal({backdrop:'static',keyboard:false});
-		},
-		success: function(data){
-			$('#modal-serie .modal-content').html(data.html_form);
-		}
-		});
-	});
-
-	$('#modal-serie').on('submit', '.create-serie', function(){
-		
-		var form = $(this);
-		$.ajax({
-			url : form.attr('data-url'),
-			data: form.serialize(),
-			type: form.attr('method'),
-			dataType:'json',
-			success: function(data){
-				
-					$('#modal-serie').modal('hide');
-					
-				}
-
-		});
-		return false;
-		
-	});
-
-
-
-</script>
 
 {% endblock %}

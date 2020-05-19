@@ -112,24 +112,26 @@ def parametre_repertoire(request, repertoire_id):
 
     if request.method == 'POST':
         if 'form' in request.POST:
-            form = repertoire_updateform(request.POST,repertoire_id)
+            form = repertoire_updateform(request.POST, instance = repertoire)
             if form.is_valid():
                 repertoire = form.save()
             else:
-                render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user, 'form':form, 'userform':userform})
+                render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user,'form':form})
 
-        #else:
-         #   userform = user_updateform(request.POST,user.email,instance=user)
-          #  if userform.is_valid():
-           #     user = userform.save()
-            #else:
-             #   render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user, 'form':form, 'userform':userform})
+        else:
+            userform = user_updateform(request.POST, instance = user)
+            if userform.is_valid():
+                user = userform.save()
+            else:
+                render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user,'userform':userform})
         return redirect(reverse('repertoire_parametre', kwargs={'repertoire_id':repertoire_id}))
 
     else:
-        form = repertoire_updateform(repertoire_id)
-        userform = user_updateform(user.email)
+        form = repertoire_updateform(instance = repertoire)
+        userform = user_updateform(instance = user)
         return render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user, 'form':form, 'userform':userform})
+
+
 
 def manager_parametre(request):
     repertoire_id = request.session.get('repertoire_id')
