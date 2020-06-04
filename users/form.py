@@ -18,8 +18,6 @@ class userform(forms.ModelForm):
 
 class user_updateform(forms.ModelForm):
 
-
-
 	class Meta:
 		model = User
 		fields = [

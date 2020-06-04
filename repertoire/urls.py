@@ -8,10 +8,8 @@ urlpatterns = [
     path('<repertoire_id>', views.repertoire, name='repertoire_archives'),
     path('<repertoire_id>/dashboard', views.dashboard_repertoire, name='repertoire_dashboard'),
     path('<repertoire_id>/parametre', views.parametre_repertoire, name='repertoire_parametre'),
+    path('<repertoire_id>/delete', views.delete_repertoire, name='delete_repertoire'),
     path('tree_views/', views.tree_views, name='repertoire_tree_views'),
-
-    path('modal', views.modal, name='modal'),
-
    
 
     path('create/serie', views.create_serie, name='create_serie'),

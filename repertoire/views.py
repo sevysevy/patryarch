@@ -15,9 +15,11 @@ def create_repertoire(request):
     if request.method == 'POST':
         form = repertoireform(request.POST)
         if form.is_valid():
-            form.instance.admin = request.user
+            form.instance.admin = user
             repertoire = form.save()
-            return HttpResponseRedirect(reverse('repertoire_dashboard'),kwarg={'repertoire_id' : repertoire.repertoire_id})
+            user.role = "administrateur"
+            user.save()
+            return HttpResponseRedirect(reverse('repertoire_dashboard',kwargs={'repertoire_id' : repertoire.repertoire_id}))
         else:
             form = repertoireform()
             return render(request , 'repertoire/create_repertoire.html',{'form':form, 'user':user})
@@ -109,21 +111,22 @@ def tree_views(request):
 def parametre_repertoire(request, repertoire_id):
     user = request.user
     repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
+    data = []
 
     if request.method == 'POST':
-        if 'form' in request.POST:
-            form = repertoire_updateform(request.POST, instance = repertoire)
-            if form.is_valid():
-                repertoire = form.save()
-            else:
-                render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user,'form':form})
-
-        else:
+        if 'userform' in request.POST:
             userform = user_updateform(request.POST, instance = user)
             if userform.is_valid():
                 user = userform.save()
             else:
                 render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user,'userform':userform})
+
+        else:
+            form = repertoire_updateform(request.POST, instance = repertoire)
+            if form.is_valid():
+                repertoire = form.save()
+            else:
+                render(request, 'repertoire/parametre.html' , {'repertoire':repertoire,'user':user,'form':form})
         return redirect(reverse('repertoire_parametre', kwargs={'repertoire_id':repertoire_id}))
 
     else:
@@ -133,46 +136,17 @@ def parametre_repertoire(request, repertoire_id):
 
 
 
-def manager_parametre(request):
-    repertoire_id = request.session.get('repertoire_id')
-    data = dict()
+
+def delete_repertoire(request,repertoire_id):
+    repertoire = Repertoire.objects.get(repertoire_id=repertoire_id)
     if request.method == 'POST':
-        form = managerform(request.POST)
-        if form.is_valid():
-            cote = form.cleaned_data['cote']
-            if Serie.objects.filter(repertoireID=repertoire_id).filter(cote=cote).exists():
-                context = {
-                    'form' : form
-                }
-                data['html_form'] = render_to_string('repertoire/create_serie.html',context,request=request)
-                return JsonResponse(data)
-            else:
-                form.instance.repertoire = Repertoire.objects.get(repertoire_id = repertoire_id)
-                form.instance.repertoireID = repertoire_id
-                serie = form.save()
-                data['form_is_valid'] = True
-            
-        else:
-            data['form_is_valid'] = False
+        repertoire.delete()
+        return redirect(reverse('index'))
+
     else:
-        form = serieform()
-
-    context = {
-    'form' : form
-    }
-    data['html_form'] = render_to_string('repertoire/create_serie.html',context,request=request)
-    return JsonResponse(data)
+        return render(request, 'repertoire/repertoire_delete.html')
 
 
-def delete_repertoire():
-    pass
-
-def modal (request):
-    repertoire_i = request.session.get('repertoire_id')
-    repertoire = Repertoire.objects.get(repertoire_id = repertoire_i)
-    data = dict()
-    data['html'] = render_to_string('repertoire/modal.html',request = request)
-    return JsonResponse(data)
 
 
 def create_serie(request):

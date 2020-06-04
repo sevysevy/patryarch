@@ -69,7 +69,7 @@ $(document).ready(function(){
 
 
 
-
+ 
 
 	$('.division-form').on('click' , function(){
 		$.ajax({

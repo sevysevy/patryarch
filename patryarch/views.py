@@ -8,7 +8,7 @@ def index(request):
 	if request.user.is_authenticated:
 		if request.user.myrepertoire.first() :
 			repertoire = request.user.myrepertoire.first()
-			return HttpResponseRedirect(reverse('repertoire_dashboard',args=(repertoire.repertoire_id,)))
+			return HttpResponseRedirect(reverse('repertoire_dashboard',kwargs={'repertoire_id' : repertoire.repertoire_id}))
 		else :
 			return create_repertoire(request)
 
