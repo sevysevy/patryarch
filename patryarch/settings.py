@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-7x2nzrajo6c7w^$v5mhl^)g5u+#18k8y+@fw7s3i_oz5)7b7#g
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com','sevysevy.pythonanywhere.com']
 
 
 
